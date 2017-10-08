@@ -1,4 +1,4 @@
-- name: Start mattermost + matterbridge
+- name: Deploy mattermost + matterbridge
   tasks:
       - file:
           src: {{ docker_data_folder }}/mattermost
@@ -19,7 +19,9 @@
       - template:
           src: matterbridge.j2
           dest: {{ docker_data_folder }}/mattermost/matterbridge/matterbridge.toml
-      - docker_service:
-          project_src: /etc/docker/mattermost
-          state: present
-          pull: true
+
+- name: Run mattermost + matterbridge
+  docker_service:
+    project_src: /etc/docker/mattermost
+    state: present
+    pull: true
