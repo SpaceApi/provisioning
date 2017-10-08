@@ -14,4 +14,4 @@
     owner=root group=root mode=0644
 
 - name: Apt - periodic updates.
-  copy: src=apt_periodic dest=/etc/apt/apt.conf.d/10periodic owner=root group=root mode=0644
+  copy: src=20auto-upgrades dest=/etc/apt/apt.conf.d/20auto-upgrades owner=root group=root mode=0644
