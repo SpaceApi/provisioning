@@ -4,3 +4,4 @@
 
   roles:
     - { role: base, tags: ['base'] }
+    - { role: docker, tags: ['docker'] }
