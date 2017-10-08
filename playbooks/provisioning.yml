@@ -1,6 +1,9 @@
 ---
 - hosts: servers
   become: yes
-
+  vars_files:
+    - '../vars/vault.yml'
   roles:
     - { role: base, tags: ['base'] }
+    - reverseproxy
+    - mattermost

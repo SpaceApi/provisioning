@@ -1,0 +1,3 @@
+chat.spaceapi.net {
+  proxy / localhost:8200
+}

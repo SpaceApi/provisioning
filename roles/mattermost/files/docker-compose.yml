@@ -28,7 +28,7 @@ services:
   web:
     image: spaceapi/mattermost-web
     ports:
-      - "81:80"
+      - "8200:80"
     restart: unless-stopped
     volumes:
       - ${DATA_FOLDER}/web/cert:/cert:ro

@@ -1,11 +1,15 @@
 - name: Deploy mattermost + matterbridge
-  tasks:
+  block:
       - file:
-          src: {{ docker_data_folder }}/mattermost
+          path: "{{ docker_data_folder }}/mattermost"
           state: directory
 
       - file:
-          src: /etc/docker/mattermost
+          path: "{{ docker_data_folder }}/mattermost/matterbridge"
+          state: directory
+
+      - file:
+          path: /etc/docker/mattermost
           state: directory
 
       - template:
@@ -18,10 +22,9 @@
 
       - template:
           src: matterbridge.j2
-          dest: {{ docker_data_folder }}/mattermost/matterbridge/matterbridge.toml
+          dest: "{{ docker_data_folder }}/mattermost/matterbridge/matterbridge.toml"
 
 - name: Run mattermost + matterbridge
   docker_service:
     project_src: /etc/docker/mattermost
     state: present
-    pull: true
