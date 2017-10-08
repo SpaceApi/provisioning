@@ -7,7 +7,7 @@
   apt: pkg=apt-transport-https update-cache=yes cache_valid_time=3600
 
 - name: Add Docker repository.
-  apt_repository: repo='deb https://apt.dockerproject.org/repo debian-jessie main'
+  apt_repository: repo='deb https://apt.dockerproject.org/repo debian-{{ ansible_distribution_release }} main'
 
 - name: Install Docker.
   apt: pkg={{ item }} state=installed update-cache=yes cache_valid_time=3600
