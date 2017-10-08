@@ -1,0 +1,6 @@
+---
+- hosts: servers
+  become: yes
+
+  roles:
+    - { role: base, tags: ['base'] }
