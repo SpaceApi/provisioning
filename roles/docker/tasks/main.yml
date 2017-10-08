@@ -1,0 +1,33 @@
+---
+- name: Add Docker repository key.
+  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80
+    id=58118E89F3A912897C070ADBF76221572C52609D
+
+- name: Install apt HTTPS transport
+  apt: pkg=apt-transport-https update-cache=yes cache_valid_time=3600
+
+- name: Add Docker repository.
+  apt_repository: repo='deb https://apt.dockerproject.org/repo debian-jessie main'
+
+- name: Install Docker.
+  apt: pkg={{ item }} state=installed update-cache=yes cache_valid_time=3600
+  with_items:
+    - docker-engine
+
+- name: Install docker-py and docker-compose.
+  pip: name="{{ item }}" state=latest
+  with_items:
+    - docker-py
+    - docker-compose
+
+- name: Enable Docker.
+  service: name=docker state=started enabled=yes
+
+- name: Don't change iptables with Docker.
+  lineinfile: dest=/etc/default/docker regexp="^DOCKER_OPTS"
+    line='DOCKER_OPTS="--iptables=false"' state=present
+  notify: restart docker
+
+- name: Create docker directory.
+  file: path=/srv/docker state=directory
+    owner=root group=docker mode=0755
