@@ -1,0 +1,33 @@
+[[gateway]]
+name="gateway1"
+enable=true
+
+[[gateway.inout]]
+account="irc.spaceapi"
+channel="#spaceapi"
+
+[[gateway.inout]]
+account="mattermost.spaceapi"
+channel="off-topic"
+
+[mattermost.spaceapi]
+#The mattermost hostname. (do not prefix it with http or https)
+Server="chat.spaceapi.de:443"
+
+#the team name as can be seen in the mattermost webinterface URL
+#in lowercase, without spaces
+Team="spaceapi"
+
+#login/pass of your bot.
+#Use a dedicated user for this and not your own!
+Login="bridge_bot"
+Password="{{ mattermost_bot_pw }}"
+
+RemoteNickFormat="<{NICK}> "
+PrefixMessagesWithNick=true
+
+[irc.spaceapi]
+Server="chat.freenode.net:6667"
+Nick="bridge_bot"
+RemoteNickFormat="<{NICK}> "
+

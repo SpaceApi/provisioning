@@ -1,0 +1,25 @@
+- name: Start mattermost + matterbridge
+  tasks:
+      - file:
+          src: {{ docker_data_folder }}/mattermost
+          state: directory
+
+      - file:
+          src: /etc/docker/mattermost
+          state: directory
+
+      - template:
+          src: env.j2
+          dest: /etc/docker/mattermost/.env
+
+      - copy:
+          src: docker-compose.yml
+          dest: /etc/docker/mattermost/docker-compose.yml
+
+      - template:
+          src: matterbridge.j2
+          dest: {{ docker_data_folder }}/mattermost/matterbridge/matterbridge.toml
+      - docker_service:
+          project_src: /etc/docker/mattermost
+          state: present
+          pull: true
