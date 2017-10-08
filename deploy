@@ -1,3 +1,4 @@
 #!/bin/bash
+set -euo pipefail
 git pull
 /usr/bin/env ansible-playbook --ask-become -i inventory playbooks/provisioning.yml "$@"
