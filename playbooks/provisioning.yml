@@ -7,3 +7,5 @@
     - { role: base, tags: ['base'] }
     - reverseproxy
     - mattermost
+    - { role: motd, tags: ['motd'] }
+    - { role: docker, tags: ['docker'] }
