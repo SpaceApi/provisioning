@@ -3,26 +3,44 @@
       - file:
           path: "{{ docker_data_folder }}/mattermost"
           state: directory
+          owner: root
+          group: root
+          mode: 0755
 
       - file:
           path: "{{ docker_data_folder }}/mattermost/matterbridge"
           state: directory
+          owner: root
+          group: root
+          mode: 0755
 
       - file:
           path: /etc/docker/mattermost
           state: directory
+          owner: root
+          group: root
+          mode: 0755
 
       - template:
           src: env.j2
           dest: /etc/docker/mattermost/.env
+          owner: root
+          group: root
+          mode: 0700
 
       - copy:
           src: docker-compose.yml
           dest: /etc/docker/mattermost/docker-compose.yml
+          owner: root
+          group: root
+          mode: 0755
 
       - template:
           src: matterbridge.j2
           dest: "{{ docker_data_folder }}/mattermost/matterbridge/matterbridge.toml"
+          owner: root
+          group: root
+          mode: 0755
 
 - name: Run mattermost + matterbridge
   docker_service:

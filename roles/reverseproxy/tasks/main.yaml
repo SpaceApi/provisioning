@@ -3,25 +3,32 @@
       - get_url:
           url: https://getcaddy.com
           dest: /tmp/installCaddy
-          mode: 0077
+          owner: root
+          group: root
+          mode: 0700
 
       - command: /tmp/installCaddy && rm /tmp/installCaddy
 
       - copy:
           src: caddy.service
           dest: /etc/systemd/system/caddy.service
+          owner: root
+          group: root
+          mode: 0644
 
       - file:
           path: /etc/caddy
           state: directory
           owner: 'www-data'
           group: 'www-data'
+          mode: 0644
 
       - copy:
           src: Caddyfile
           dest: /etc/caddy/Caddyfile
           owner: 'www-data'
           group: 'www-data'
+          mode: 0644
 
       - systemd:
           daemon_reload: yes
