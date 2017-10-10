@@ -41,3 +41,9 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_FOLDER}/matterbridge/matterbridge.toml:/matterbridge.toml
+
+  githubintegration:
+    build: githubintegration/.
+    restart: unless-stopped
+    ports:
+      - "8201:5000"

@@ -42,6 +42,27 @@
           group: root
           mode: 0755
 
+      - file:
+          path: /etc/docker/mattermost/githubintegration
+          state: directory
+          owner: root
+          group: root
+          mode: 0755
+
+      - copy:
+          src: Dockerfile_githubintegration
+          dest: /etc/docker/mattermost/githubintegration/Dockerfile
+          owner: root
+          group: root
+          mode: 0755
+
+      - template:
+          src: githubintegration.j2
+          dest: /etc/docker/mattermost/githubintegration/config.py
+          owner: root
+          group: root
+          mode: 0755
+
 - name: Run mattermost + matterbridge
   docker_service:
     project_src: /etc/docker/mattermost

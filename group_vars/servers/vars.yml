@@ -1,2 +1,3 @@
 mattermost_db_password: "{{ vault_mattermost_db_password }}"
 mattermost_bridge_bot_password: "{{ vault_mattermost_bridge_bot_password }}"
+mattermost_gh_hook_secretkey: "{{ vault_mattermost_gh_hook_secretkey }}"
