@@ -1,7 +1,7 @@
 - name: Install caddy
   block:
-      - get_url:
-          url: https://getcaddy.com
+      - copy:
+          src: installCaddy
           dest: /tmp/installCaddy
           owner: root
           group: root
