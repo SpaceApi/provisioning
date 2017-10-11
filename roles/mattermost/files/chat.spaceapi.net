@@ -5,5 +5,7 @@ chat.spaceapi.net {
     websocket
   }
 
-  proxy /ghhooks localhost:8201
+  proxy /ghhooks localhost:8201 {
+    without /ghhooks
+  }
 }

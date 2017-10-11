@@ -4,11 +4,13 @@ RUN apk update && apk upgrade && \
   apk add --no-cache git build-base python-dev py-pip jpeg-dev zlib-dev
 
 RUN git clone https://github.com/softdevteam/mattermost-github-integration.git
-
 WORKDIR /mattermost-github-integration
-
 RUN pip install -r requirements.txt
 
 ADD config.py /mattermost-github-integration/mattermostgithub/config.py
+
+# project has a bug, we need to fix app.run to make it play nicely
+RUN sed -i '$ d' server.py
+RUN echo "app.run('0.0.0.0')" >> server.py
 
 CMD python server.py

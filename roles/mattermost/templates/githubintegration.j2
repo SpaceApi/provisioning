@@ -1,12 +1,12 @@
 USERNAME = "Github"
 ICON_URL = "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
 MATTERMOST_WEBHOOK_URLS = {
-    'SpaceApi' : ("https://chat.spaceapi.net/ghhooks/all", "off-topic"),
+    'default' : ("https://chat.spaceapi.net/hooks/{{ mattermost_gh_hook_id_default }}", "playground"),
 }
 GITHUB_IGNORE_ACTIONS = {
     "issues": ["labeled", "assigned"],
 }
-SECRET = None
+SECRET = ""
 SHOW_AVATARS = True
 SERVER = {
     'hook': "/"
