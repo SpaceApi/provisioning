@@ -23,6 +23,13 @@
           group: 'www-data'
           mode: 0755
 
+      - file:
+          path: /etc/caddy/sites
+          state: directory
+          owner: 'www-data'
+          group: 'www-data'
+          mode: 0755
+
       - copy:
           src: Caddyfile
           dest: /etc/caddy/Caddyfile
