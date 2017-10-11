@@ -18,6 +18,7 @@
     # Security
     - unattended-upgrades
     - apt-listchanges
+    - gnupg
 
 - name: Unattended upgrades - copy config file
   template: src=unattended_upgrades.j2 dest=/etc/apt/apt.conf.d/50unattended-upgrades

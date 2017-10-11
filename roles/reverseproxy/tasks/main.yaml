@@ -1,0 +1,43 @@
+- name: Install caddy
+  block:
+      - copy:
+          src: installCaddy
+          dest: /tmp/installCaddy
+          owner: root
+          group: root
+          mode: 0700
+
+      - command: /tmp/installCaddy && rm /tmp/installCaddy
+
+      - copy:
+          src: caddy.service
+          dest: /etc/systemd/system/caddy.service
+          owner: root
+          group: root
+          mode: 0644
+
+      - file:
+          path: /etc/caddy
+          state: directory
+          owner: 'www-data'
+          group: 'www-data'
+          mode: 0755
+
+      - file:
+          path: /etc/caddy/sites
+          state: directory
+          owner: 'www-data'
+          group: 'www-data'
+          mode: 0755
+
+      - copy:
+          src: Caddyfile
+          dest: /etc/caddy/Caddyfile
+          owner: 'www-data'
+          group: 'www-data'
+          mode: 0644
+
+      - systemd:
+          daemon_reload: yes
+          name: caddy
+          state: restarted
