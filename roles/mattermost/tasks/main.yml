@@ -67,3 +67,16 @@
   docker_service:
     project_src: /etc/docker/mattermost
     state: present
+
+- name: Configure reverseproxy
+  block:
+    - copy:
+        src: chat.spaceapi.net
+        dest: /etc/caddy/sites
+        owner: 'www-data'
+        group: 'www-data'
+        mode: 0755
+
+    - systemd:
+        name: caddy
+        state: restarted

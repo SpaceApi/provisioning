@@ -1,0 +1,9 @@
+chat.spaceapi.net {
+  proxy / localhost:8200 {
+    transparent
+    insecure_skip_verify
+    websocket
+  }
+
+  proxy /ghhooks localhost:8201
+}
