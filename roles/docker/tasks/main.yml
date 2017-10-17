@@ -17,10 +17,10 @@
   with_items:
     - docker-engine
 
-- name: Install docker-py and docker-compose.
+- name: Install docker-compose.
   pip: name="{{ item }}" state=latest
   with_items:
-    - docker-py
+    - docker
     - docker-compose
 
 - name: Enable Docker.
