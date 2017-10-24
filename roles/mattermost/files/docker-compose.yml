@@ -36,8 +36,17 @@ services:
     links:
       - app:app
 
-  matterbridge:
-    image: 42wim/matterbridge:1.3.0
+# matterbridge seems to have issues, disabling it for now
+#  matterbridge:
+#    image: 42wim/matterbridge:1.3.0
+#    restart: unless-stopped
+#    depends_on:
+#      - web
+#    volumes:
+#      - ${DATA_FOLDER}/matterbridge/matterbridge.toml:/matterbridge.toml
+
+  githubintegration:
+    build: githubintegration/.
     restart: unless-stopped
-    volumes:
-      - ${DATA_FOLDER}/matterbridge/matterbridge.toml:/matterbridge.toml
+    ports:
+      - "8201:5000"

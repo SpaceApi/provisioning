@@ -4,4 +4,8 @@ chat.spaceapi.net {
     insecure_skip_verify
     websocket
   }
+
+  proxy /ghhooks localhost:8201 {
+    without /ghhooks
+  }
 }
