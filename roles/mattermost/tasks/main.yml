@@ -63,7 +63,7 @@
           group: root
           mode: 0755
 
-- name: Run mattermost + matterbridge
+- name: Run mattermost + integrations
   docker_service:
     project_src: /etc/docker/mattermost
     recreate: always
