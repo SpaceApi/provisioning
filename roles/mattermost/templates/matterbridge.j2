@@ -23,7 +23,7 @@ Team="spaceapi"
 Login="bridge_bot"
 Password="{{ mattermost_bridge_bot_password }}"
 
-RemoteNickFormat="<{NICK}> "
+RemoteNickFormat="[{PROTOCOL}/{NICK}] "
 PrefixMessagesWithNick=true
 EditDisable=false
 EditSuffix=" (edited)"
@@ -31,5 +31,5 @@ EditSuffix=" (edited)"
 [irc.spaceapi]
 Server="chat.freenode.net:6667"
 Nick="bridge_bot"
-RemoteNickFormat="<{NICK}> "
+RemoteNickFormat="[{PROTOCOL}/{NICK}] "
 
