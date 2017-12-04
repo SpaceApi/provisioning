@@ -3,7 +3,7 @@
   become: yes
   roles:
     - { role: base, tags: ['base'] }
-    - reverseproxy
-    - mattermost
+    - { role: reverseproxy, tags: ['reverseproxy'] }
+    - { role: mattermost, tags: ['mattermost', 'matterbridge'] }
     - { role: motd, tags: ['motd'] }
     - { role: docker, tags: ['docker'] }
