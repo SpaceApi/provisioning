@@ -1,0 +1,13 @@
+- name: Configure reverseproxy
+  block:
+    - copy:
+        src: directory.spaceapi.net
+        dest: /etc/caddy/sites
+        owner: 'www-data'
+        group: 'www-data'
+        mode: 0755
+
+    - systemd:
+        name: caddy
+        state: restarted
+
