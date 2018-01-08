@@ -1,0 +1,4 @@
+directory.spaceapi.net {
+  redir / https://spaceapi.fixme.ch/directory.json 307
+}
+

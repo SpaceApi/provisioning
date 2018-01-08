@@ -7,3 +7,4 @@
     - { role: mattermost, tags: ['mattermost', 'matterbridge'] }
     - { role: motd, tags: ['motd'] }
     - { role: docker, tags: ['docker'] }
+    - { role: directory, tags: ['directory'] }
