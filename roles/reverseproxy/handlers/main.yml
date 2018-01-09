@@ -1,3 +1,6 @@
 ---
 - name: restart caddy
   systemd: name=caddy state=restarted
+
+- name: reload systemd
+  systemd: daemon_reload=yes
