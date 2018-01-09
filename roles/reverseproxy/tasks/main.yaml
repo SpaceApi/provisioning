@@ -15,6 +15,9 @@
           owner: root
           group: root
           mode: 0644
+        notify:
+          - reload systemd
+          - restart caddy
 
       - file:
           path: /etc/caddy
@@ -22,6 +25,7 @@
           owner: 'www-data'
           group: 'www-data'
           mode: 0755
+        notify: restart caddy
 
       - file:
           path: /etc/caddy/sites
@@ -29,6 +33,7 @@
           owner: 'www-data'
           group: 'www-data'
           mode: 0755
+        notify: restart caddy
 
       - copy:
           src: Caddyfile
@@ -36,8 +41,4 @@
           owner: 'www-data'
           group: 'www-data'
           mode: 0644
-
-      - systemd:
-          daemon_reload: yes
-          name: caddy
-          state: restarted
+        notify: restart caddy
