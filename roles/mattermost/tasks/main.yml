@@ -70,13 +70,3 @@
     build: yes
     nocache: yes
     state: present
-
-- name: Configure reverseproxy
-  copy:
-    src: chat.spaceapi.net
-    dest: /etc/caddy/sites
-    owner: 'www-data'
-    group: 'www-data'
-    mode: 0755
-  notify:
-    - restart caddy

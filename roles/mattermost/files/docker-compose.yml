@@ -27,9 +27,15 @@ services:
       - db:db
   web:
     image: spaceapi/mattermost-web
-    ports:
-      - "8200:80"
+    expose:
+      - "80"
     restart: unless-stopped
+    networks:
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:chat.spaceapi.net"
     volumes:
       - ${DATA_FOLDER}/web/cert:/cert:ro
       - /etc/localtime:/etc/localtime:ro
@@ -40,12 +46,22 @@ services:
     image: 42wim/matterbridge:1.3.0
     restart: unless-stopped
     depends_on:
-      - web
+      - traefik-web
     volumes:
       - ${DATA_FOLDER}/matterbridge/matterbridge.toml:/matterbridge.toml
 
   githubintegration:
     build: githubintegration/.
     restart: unless-stopped
-    ports:
-      - "8201:5000"
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=5000"
+      - "traefik.frontend.rule=Host:gh.chat.spaceapi.net"
+    expose:
+      - "5000"
+
+networks:
+  traefik-web:
+    external: true
