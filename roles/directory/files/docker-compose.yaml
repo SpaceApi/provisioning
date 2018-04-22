@@ -3,5 +3,14 @@ version: '3'
 services:
   web:
     image: nginx
+    expose:
+      - "80"
+    restart: unless-stopped
+    networks:
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:directory.spaceapi.net"
     volumes:
       - ${DATA_FOLDER}/nginx.conf:/etc/nginx/nginx.conf:ro
