@@ -1,0 +1,11 @@
+- name: Run watchtower
+  docker_container:
+    name: watchtower
+    image: v2tec/watchtower
+    state: started
+    recreate: yes
+    restart: yes
+    restart_policy: always
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: "--interval {{ watchtower_interval }} {{ watchtower_targets | join(' ') }}"
