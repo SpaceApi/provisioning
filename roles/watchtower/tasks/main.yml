@@ -8,4 +8,4 @@
     restart_policy: always
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-    command: "--interval {{ watchtower_interval }} {{ watchtower_targets | join(' ') }}"
+    command: "--interval {{ watchtower_interval }} --cleanup {{ watchtower_targets | join(' ') }}"
