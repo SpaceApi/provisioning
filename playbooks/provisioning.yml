@@ -8,4 +8,5 @@
     - { role: motd, tags: ['motd'] }
     - { role: docker, tags: ['docker'] }
     - { role: watchtower, tags: ['watchtower'] }
+    - { role: website, tags: ['website'] }
     - { role: directory, tags: ['directory'] }

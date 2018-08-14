@@ -1,0 +1,10 @@
+- name: Run website
+  docker_container:
+    name: website
+    image: spaceapi/website:v1
+    state: started
+    recreate: yes
+    restart: yes
+    restart_policy: always
+    ports:
+      - "8201:80"

@@ -20,3 +20,4 @@ To do a "dry-run" deployment, use the `--check` option. To see changes, use the
 Ports used by docker for reverseproxy purposes
 
  * 8200 -> mattermost
+ * 8201 -> website
