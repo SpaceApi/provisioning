@@ -3,58 +3,70 @@ version: "2"
 services:
   db:
     image: spaceapi/mattermost-db
-    restart: unless-stopped
+    restart: always
     volumes:
       - ${DATA_FOLDER}/db/var/lib/postgresql/data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - default
     environment:
       - POSTGRES_USER=mmuser
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=mattermost
   app:
     image: spaceapi/mattermost-app
-    restart: unless-stopped
+    restart: always
+    labels:
+      - "traefik.enable=false"
     volumes:
       - ${DATA_FOLDER}/app/mattermost/config:/mattermost/config:rw
       - ${DATA_FOLDER}/app/mattermost/data:/mattermost/data:rw
       - ${DATA_FOLDER}/app/mattermost/logs:/mattermost/logs:rw
       - /etc/localtime:/etc/localtime:ro
+    networks:
+      - default
     environment:
       - MM_USERNAME=mmuser
       - MM_PASSWORD=${POSTGRES_PASSWORD}
       - MM_DBNAME=mattermost
-    links:
-      - db:db
+    depends_on:
+      - db
   web:
     image: spaceapi/mattermost-web
     expose:
       - "80"
-    restart: unless-stopped
+    restart: always
     networks:
       - traefik-web
+      - default
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=traefik-web"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:chat.spaceapi.net"
     volumes:
       - ${DATA_FOLDER}/web/cert:/cert:ro
       - /etc/localtime:/etc/localtime:ro
-    links:
-      - app:app
+    depends_on:
+      - app
 
   matterbridge:
     image: 42wim/matterbridge:1.3.0
-    restart: unless-stopped
+    restart: always
+    networks:
+      - default
     depends_on:
-      - traefik-web
+      - web
     volumes:
       - ${DATA_FOLDER}/matterbridge/matterbridge.toml:/matterbridge.toml
 
   githubintegration:
     build: githubintegration/.
-    restart: unless-stopped
+    restart: always
     networks:
-      - web
+      - traefik-web
     labels:
       - "traefik.enable=true"
       - "traefik.port=5000"
@@ -63,5 +75,6 @@ services:
       - "5000"
 
 networks:
+  default:
   traefik-web:
     external: true

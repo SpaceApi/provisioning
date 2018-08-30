@@ -25,4 +25,4 @@ entryPoint = "http"
 endpoint = "unix:///var/run/docker.sock"
 domain = "spaceapi.net"
 watch = true
-exposedbydefault = false
+exposedByDefault = false

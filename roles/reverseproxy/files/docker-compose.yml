@@ -7,6 +7,8 @@ services:
     restart: always
     networks:
      - traefik-web
+    labels:
+      - "traefik.enable=false"
     ports:
       - "80:80"
       - "443:443"
