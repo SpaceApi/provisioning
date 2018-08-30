@@ -1,44 +1,45 @@
-- name: Install caddy
+- name: Configure traefik
   block:
-      - copy:
-          src: installCaddy
-          dest: /tmp/installCaddy
-          owner: root
-          group: root
-          mode: 0700
+  - file:
+      path: /etc/docker/traefik
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
 
-      - command: /tmp/installCaddy && rm /tmp/installCaddy
+  - template:
+      src: env.j2
+      dest: /etc/docker/traefik/.env
+      owner: root
+      group: root
+      mode: 0700
 
-      - copy:
-          src: caddy.service
-          dest: /etc/systemd/system/caddy.service
-          owner: root
-          group: root
-          mode: 0644
-        notify:
-          - reload systemd
-          - restart caddy
+  - copy:
+      src: docker-compose.yml
+      dest: /etc/docker/traefik/docker-compose.yml
+      owner: root
+      group: root
+      mode: 0755
 
-      - file:
-          path: /etc/caddy
-          state: directory
-          owner: 'www-data'
-          group: 'www-data'
-          mode: 0755
-        notify: restart caddy
+  - file:
+      path: "{{ docker_data_folder }}/traefik/acme"
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
 
-      - file:
-          path: /etc/caddy/sites
-          state: directory
-          owner: 'www-data'
-          group: 'www-data'
-          mode: 0755
-        notify: restart caddy
+  - copy:
+      src: traefik.toml
+      dest: "{{ docker_data_folder }}/traefik/traefik.toml"
 
-      - copy:
-          src: Caddyfile
-          dest: /etc/caddy/Caddyfile
-          owner: 'www-data'
-          group: 'www-data'
-          mode: 0644
-        notify: restart caddy
+  - docker_network:
+      name: traefik-web
+      state: present
+
+- name: Run traefik
+  docker_service:
+    project_src: /etc/docker/traefik
+    recreate: always
+    build: yes
+    nocache: yes
+    state: present

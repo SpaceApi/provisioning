@@ -1,5 +1,0 @@
-directory.spaceapi.net {
-  header / Access-Control-Allow-Origin "*"
-  redir / https://spaceapi.fixme.ch/directory.json 307
-}
-
