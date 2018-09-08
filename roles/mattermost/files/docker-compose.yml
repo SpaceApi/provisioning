@@ -45,7 +45,7 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-web"
       - "traefik.port=80"
-      - "traefik.frontend.rule=Host:chat.spaceapi.net"
+      - "traefik.frontend.rule=Host:chat.spaceapi.net,chat.spaceapi.io"
     volumes:
       - ${DATA_FOLDER}/web/cert:/cert:ro
       - /etc/localtime:/etc/localtime:ro
@@ -60,7 +60,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=5000"
-      - "traefik.frontend.rule=Host:gh.chat.spaceapi.net"
+      - "traefik.frontend.rule=Host:gh.chat.spaceapi.net,gh.chat.spaceapi.io"
     expose:
       - "5000"
 
