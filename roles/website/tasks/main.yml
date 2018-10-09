@@ -6,5 +6,12 @@
     recreate: yes
     restart: yes
     restart_policy: always
-    ports:
-      - "8201:80"
+    networks:
+      - name: traefik-web
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "traefik-web"
+      traefik.port: "80"
+      traefik.frontend.rule: "Host:spaceapi.io"
+    expose:
+      - 80
