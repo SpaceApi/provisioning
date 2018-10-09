@@ -1,0 +1,17 @@
+- name: Run website
+  docker_container:
+    name: website
+    image: spaceapi/website:v1
+    state: started
+    recreate: yes
+    restart: yes
+    restart_policy: always
+    networks:
+      - name: traefik-web
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "traefik-web"
+      traefik.port: "80"
+      traefik.frontend.rule: "Host:spaceapi.io"
+    expose:
+      - 80

@@ -6,4 +6,7 @@
     - { role: mattermost, tags: ['mattermost'] }
     - { role: matterbridge, tags: ['matterbridge'] }
     - { role: motd, tags: ['motd'] }
+    - { role: docker, tags: ['docker'] }
+    - { role: watchtower, tags: ['watchtower'] }
+    - { role: website, tags: ['website'] }
     - { role: directory, tags: ['directory'] }
