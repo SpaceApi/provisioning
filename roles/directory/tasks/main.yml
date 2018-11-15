@@ -1,36 +1,15 @@
 - name: Configure spaceapi directory
   block:
     - file:
-        path: "{{ docker_data_folder }}/spaceapi_directory"
-        state: directory
-        owner: root
-        group: root
-        mode: 0755
-
-    - file:
         path: /etc/docker/spaceapi_directory
         state: directory
         owner: root
         group: root
         mode: 0755
 
-    - template:
-        src: env.j2
-        dest: /etc/docker/spaceapi_directory/.env
-        owner: root
-        group: root
-        mode: 0700
-
     - copy:
         src: docker-compose.yml
         dest: /etc/docker/spaceapi_directory/docker-compose.yml
-        owner: root
-        group: root
-        mode: 0755
-
-    - copy:
-        src: nginx.conf
-        dest: "{{ docker_data_folder }}/spaceapi_directory/nginx.conf"
         owner: root
         group: root
         mode: 0755
