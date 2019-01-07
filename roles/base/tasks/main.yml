@@ -2,23 +2,25 @@
   apt: update-cache=yes cache_valid_time=3600
 
 - name: Install required system packages.
-  apt: pkg={{ item }} update-cache=yes cache_valid_time=3600
-  with_items:
-    # Base
-    - build-essential
-    - gcc
-    - g++
-    # Sysadmin
-    - htop
-    - strace
-    - vim-nox
-    - mlocate
-    - curl
-    - molly-guard
-    # Security
-    - unattended-upgrades
-    - apt-listchanges
-    - gnupg
+  apt:
+    pkg:
+      # Base
+      - build-essential
+      - gcc
+      - g++
+      # Sysadmin
+      - htop
+      - strace
+      - vim-nox
+      - mlocate
+      - curl
+      - molly-guard
+      # Security
+      - unattended-upgrades
+      - apt-listchanges
+      - gnupg
+    update-cache: yes
+    cache_valid_time: 3600
 
 - name: Unattended upgrades - copy config file
   template: src=unattended_upgrades.j2 dest=/etc/apt/apt.conf.d/50unattended-upgrades
