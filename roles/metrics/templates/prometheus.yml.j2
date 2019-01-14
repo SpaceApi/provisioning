@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 1m
+evaluation_interval: 1m
+
+remote_write:
+  - url: "http://influx:8086/api/v1/prom/write?db=spaceapi&u={{ influxdb_user }}&p={{ influxdb_user_password }}"
+remote_read:
+  - url: "http://influx:8086/api/v1/prom/read?db=spaceapi&u={{ influxdb_user }}&p={{ influxdb_user_password }}"
+
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']
+  - job_name: 'traefik'
+    scheme: 'https'
+    static_configs:
+    - targets: ['reverseproxy.spaceapi.io']
+  - job_name: 'directory'
+    scheme: 'https'
+    static_configs:
+    - targets: ['directory.spaceapi.io']

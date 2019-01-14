@@ -2,3 +2,10 @@ mattermost_db_password: "{{ vault_mattermost_db_password }}"
 mattermost_bridge_bot_password: "{{ vault_mattermost_bridge_bot_password }}"
 mattermost_gh_hook_secretkey: "{{ vault_mattermost_gh_hook_secretkey }}"
 mattermost_gh_hook_id_default: "{{ vault_mattermost_gh_hook_id_default }}"
+
+influxdb_admin_user: "{{ vault_influxdb_admin_user }}"
+influxdb_admin_password: "{{ vault_influxdb_admin_password }}"
+influxdb_user: "{{ vault_influxdb_user }}"
+influxdb_user_password: "{{ vault_influxdb_user_password }}"
+
+grafana_admin_password: "{{ vault_grafana_admin_password }}"
