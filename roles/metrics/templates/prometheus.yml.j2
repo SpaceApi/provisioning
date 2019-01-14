@@ -1,6 +1,6 @@
 global:
   scrape_interval: 1m
-evaluation_interval: 1m
+  evaluation_interval: 1m
 
 remote_write:
   - url: "http://influx:8086/api/v1/prom/write?db=spaceapi&u={{ influxdb_user }}&p={{ influxdb_user_password }}"
@@ -20,3 +20,7 @@ scrape_configs:
     scheme: 'https'
     static_configs:
     - targets: ['directory.spaceapi.io']
+  - job_name: 'grafana'
+    scheme: 'https'
+    static_configs:
+    - targets: ['metrics.spaceapi.io']
