@@ -8,11 +8,10 @@ services:
     networks:
      - traefik-web
     labels:
-      - traefik.frontend.rule: "Host:reverseproxy.spaceapi.io",
-      - traefik.enable: "true",
-      - traefik.port: "8080",
-      - traefik.docker.network: "traefik-web"
-
+      - "traefik.frontend.rule=Host:reverseproxy.spaceapi.io"
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik-web"
     ports:
       - "80:80"
       - "443:443"

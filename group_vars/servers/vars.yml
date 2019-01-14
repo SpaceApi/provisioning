@@ -9,3 +9,5 @@ influxdb_user: "{{ vault_influxdb_user }}"
 influxdb_user_password: "{{ vault_influxdb_user_password }}"
 
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
+
+prometheus_basic_auth: "{{ vault_prometheus_basic_auth }}"
