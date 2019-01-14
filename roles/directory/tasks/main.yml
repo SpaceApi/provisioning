@@ -1,22 +1,29 @@
 - name: Configure spaceapi directory
   block:
     - file:
-        path: /etc/docker/spaceapi_directory
+        path: "{{ docker_folder }}/spaceapi_directory"
         state: directory
         owner: root
         group: root
         mode: 0755
 
+    - template:
+        src: env.j2
+        dest: "{{ docker_folder }}/spaceapi_directory/.env"
+        owner: root
+        group: root
+        mode: 0700
+
     - copy:
         src: docker-compose.yml
-        dest: /etc/docker/spaceapi_directory/docker-compose.yml
+        dest: "{{ docker_folder }}/spaceapi_directory/docker-compose.yml"
         owner: root
         group: root
         mode: 0755
 
 - name: Run spaceapi directory
   docker_service:
-    project_src: /etc/docker/spaceapi_directory
+    project_src: "{{ docker_folder }}/spaceapi_directory"
     recreate: always
     build: yes
     nocache: yes
