@@ -1,0 +1,15 @@
+- name: Run validator
+  docker_container:
+    name: validator
+    image: spaceapi/validator:master
+    state: started
+    recreate: yes
+    restart: yes
+    restart_policy: always
+    networks:
+      - name: traefik-web
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "traefik-web"
+      traefik.port: "80"
+      traefik.frontend.rule: "Host:validator.spaceapi.io"

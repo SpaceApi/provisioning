@@ -10,3 +10,4 @@
     - { role: watchtower, tags: ['watchtower'] }
     - { role: website, tags: ['website'] }
     - { role: directory, tags: ['directory'] }
+    - { role: validator, tags: ['validator'] }
