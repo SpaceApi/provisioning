@@ -21,6 +21,13 @@
         group: root
         mode: 0755
 
+    - copy:
+        src: nginx.conf
+        dest: "{{ docker_data_folder }}/spaceapi_directory/nginx.conf"
+        owner: root
+        group: root
+        mode: 0755
+
 - name: Run spaceapi directory
   docker_service:
     project_src: "{{ docker_folder }}/spaceapi_directory"
