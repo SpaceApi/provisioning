@@ -7,6 +7,13 @@
         group: root
         mode: 0755
 
+    - template:
+        src: env.j2
+        dest: "{{ docker_folder }}/spaceapi_directory/.env"
+        owner: root
+        group: root
+        mode: 0700
+
     - copy:
         src: docker-compose.yml
         dest: /etc/docker/spaceapi_directory/docker-compose.yml

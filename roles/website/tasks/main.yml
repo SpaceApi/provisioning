@@ -12,4 +12,4 @@
       traefik.enable: "true"
       traefik.docker.network: "traefik-web"
       traefik.port: "80"
-      traefik.frontend.rule: "Host:spaceapi.io"
+      traefik.frontend.rule: "Host:{{ domain }}"
