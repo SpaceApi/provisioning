@@ -1,0 +1,7 @@
+---
+- name: Mount up persistent storage
+  mount:
+    path: /srv
+    src: /dev/sdb
+    fstype: ext4
+    state: mounted

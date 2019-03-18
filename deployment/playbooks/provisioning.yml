@@ -1,7 +1,10 @@
 ---
-- hosts: servers
-  become: yes
+- hosts: node1
+  # become: yes
+  user: root
   roles:
+    - { role: network }
+    - { role: storage }
     - { role: base, tags: ['base'] }
     - { role: mattermost, tags: ['mattermost'] }
     - { role: matterbridge, tags: ['matterbridge'] }
