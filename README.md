@@ -1,6 +1,6 @@
 # provisioning
 
-Ansible provisioning for the SpaceAPI infrastructure.
+Provisioning for the SpaceAPI infrastructure.
 
 ## Deployment
 
@@ -14,10 +14,3 @@ To do a "dry-run" deployment, use the `--check` option. To see changes, use the
 `--diff` option.
 
     ./deploy -t <role> --diff --check
-
-## Ports
-
-Ports used by docker for reverseproxy purposes
-
- * 8200 -> mattermost
- * 8201 -> website

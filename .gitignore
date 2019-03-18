@@ -1,3 +1,9 @@
 *.swp
 *.retry
 vaultpass
+terraform.tfvars
+*.backup
+*.tfstate
+.idea
+.terraform
+

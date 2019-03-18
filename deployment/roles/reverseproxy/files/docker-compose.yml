@@ -8,7 +8,9 @@ services:
     networks:
      - traefik-web
     labels:
-      - "traefik.enable=false"
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik-web"
       - "traefik.frontend.rule=Host:reverseproxy.${DOMAIN}"
     ports:
       - "80:80"

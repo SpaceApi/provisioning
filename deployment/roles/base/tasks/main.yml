@@ -19,6 +19,7 @@
       - unattended-upgrades
       - apt-listchanges
       - gnupg
+      - python-setuptools
     update-cache: yes
     cache_valid_time: 3600
 

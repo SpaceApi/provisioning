@@ -2,6 +2,6 @@
 become_method: sudo
 ansible_ask_become_pass: yes
 docker_data_folder: /srv/docker
+docker_folder: /etc/docker
 motd_path: files/motd.txt
 domain: spaceapi.io
-docker_folder: /etc/docker

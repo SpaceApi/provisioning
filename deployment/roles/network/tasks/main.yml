@@ -1,0 +1,13 @@
+---
+- name: Create interface file
+  template:
+    src: 60-my-floating-ip.cfg.j2
+    dest: /etc/network/interfaces.d/60-my-floating-ip.cfg
+  register: floating_ip
+
+- name: Restart network
+  service:
+    name: networking
+    state: restarted
+  when: floating_ip.changed
+
