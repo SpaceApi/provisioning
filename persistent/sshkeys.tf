@@ -3,6 +3,15 @@ resource "hcloud_ssh_key" "gidsi_scraps" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCy4zgAPO3ZP6Jlkbo3gXJ1WdzxMuNPGJPidrie1/9njpp7llSOEa2SKaY3a44CAOdliH99bTQ8X9FilidEjbELen/HPeLvb00jnhoQqS7vWcwun1LMJ7RUtX5Mrewl83HQGOKf5KnT2PybQvix0zyzyAfIgQfx1mCl0/MzY7PIXeHZCcUwbQFGQnNg8FQK7URT4qVaNvY9mgfFhoPMqnG95+nRm8se8kTzcVKPaDYZG6CwG00lk1Klmn4bgZ+4JtuJ/uYU1puTIJBI+N4JoKOrw9MQZROzf4ERKb5G6bWrTZ0aPPjzL1du9uOtr/FBZZdW0Mtlrlr5s64FjI2P0tAvruVwNIk7rCQsp7RCg/M2fsSaL3Z7oKbGaY/UlcLCq8vsJyUvxYlgueDn6d15y5gxHJnnwqUF4NOhYA1O9/RCQKX/ADZsh3lTHjeXhIkvSU1YuIJEHn9TMfL5nnw+KRXTsuePLuWHOvYhij4w6IRMXGpth8xxH8Q1qGUWjRzhZtDdj37aGijBc42c7LfXbJg4RX1ya/UMRmxTCSKUOhnvbLwTLQpbCQ08iUBAy7RibTUp3nkRk+HsHmvy/I4o3Fb32MAC2LU6yRhqlAzUx8I/iSCbTBQ7NwadBmCmXJYvuh7gq0iR6au1R0kUYTQgasW0Z2VUzvImAvUaFaDWTfd8vQ== gidsi@scraps"
 }
 
-output "ssh key id" {
+resource "hcloud_ssh_key" "gidsi_betelgeuse" {
+  name = "gidsi_betelgeuse"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/R05weHRfGrywFon2qy/hJjxFoMLIlL5keOLyPbXrJsdf+GKcrOFu8QWXeCc2OejFI1snK4EddCHrZGmVnZgGlATDyRN+T3KD7ZJv15zssY+6wxR1HoaSIeRpR59RL0uDryWpON+IwAKCTSllAa/OtwVKLphg32yvLDXreXFJt5SIMjLFlZGCghMlQgrrpa/MGREclOxxevnbb1sBul1qhOcGAdoXHebTm42sV1/uzzrMMyS+enG0/rvCmco//7fUP5gRLjzdmm4z7QOVle1+m7m/pUdejm6cMw0b38CKoGvA6ycLziTnTeTn/UA0xKMHlJWrrC3aW5a/17HkTTZ4ywCHBXlLSgCr+RCbEkSh3GPBILlB90AcUpPrQhP+jcvsS4HsQMdsUGM00phQygTcUiSSdcBIMgvdk4ztbZ+XyhqshGisM8byUD6ppMR1G87uWaX7ZwNwD7DpgLxYLTXypKv66mzZQb4jj9LlpHta61Ir2sUDlM0iZgaZsYrhmlmKtrIng5YgrD/3rsTAY9mB7c5Cln11JKRVpXGKwu+2H1wzmvSgVIsmFbHoS+99z2f5KJGWNa8bupZpjexTbD2aElBuablCkSTFnc9tcXsC1HtUTHbi/diWZkf5R7pdB5Njvc4KnqWFxyeHOeipCw1SL3qOXYEiUqTTDzB9+SfBJw== gidsi@betelgeuse"
+}
+
+output "ssh key id1" {
   value = "${hcloud_ssh_key.gidsi_scraps.id}"
+}
+
+output "ssh key id2" {
+  value = "${hcloud_ssh_key.gidsi_betelgeuse.id}"
 }
