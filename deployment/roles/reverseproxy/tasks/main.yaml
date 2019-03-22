@@ -39,8 +39,6 @@
 
 - name: Run traefik
   docker_service:
-    project_src: /etc/docker/traefik
-    recreate: always
-    build: yes
+    project_src: "{{ docker_folder }}/traefik"
     nocache: yes
     state: present

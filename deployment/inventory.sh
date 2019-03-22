@@ -1,2 +1,3 @@
 #!/bin/bash
-./bin/terraform-inventory $@ ~/Projects/terraform/nodes/terraform.tfstate.d/dev/terraform.tfstate
+export TF_HOSTNAME_KEY_NAME=name
+./bin/terraform-inventory $@ ../nodes/terraform.tfstate.d/dev/terraform.tfstate
