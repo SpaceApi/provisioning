@@ -1,5 +1,0 @@
-#!/bin/bash
-set -euo pipefail
-set -x
-#git pull
-/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass "$@"

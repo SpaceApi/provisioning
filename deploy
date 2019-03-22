@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+set -x
+#git pull
+
+export HCLOUD_TOKEN $(gopass spaceapi/hetzner_cloud_token)
+
+cd persistent
+terraform apply
+
+# dev
+cd ../nodes
+terraform workspace select dev
+terraform apply -var-file=dev.tfvars
+
+cd ../deployment
+/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass "$@"
+
+
+read -p "Dev deployed, press enter to destroy"
+
+# cleanup dev
+cd ../nodes
+terraform destroy -auto-approve -var-file=dev.tfvars
+
+read -p "Press enter to deploy to prod"
+
+# prod
+terraform workspace select prod
+terraform apply -var-file=prod.tfvars 
+
+cd ../deployment
+/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass "$@"
+

@@ -18,12 +18,16 @@ variable "ssh_key_ids" {
   type = "list"
 }
 
+variable "domain" {
+  type = "string"
+}
+
 provider "hcloud" {
   token = "${var.hetzner_token}"
 }
 
 resource "hcloud_server" "node1" {
-  name = "${terraform.workspace}node01"
+  name = "node1.${var.domain}"
   image = "debian-9"
   server_type = "cx11"
   ssh_keys = "${var.ssh_key_ids}"

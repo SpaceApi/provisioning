@@ -4,7 +4,6 @@
     image: spaceapi/website:v2
     state: started
     recreate: yes
-    restart: yes
     restart_policy: always
     networks:
       - name: traefik-web
