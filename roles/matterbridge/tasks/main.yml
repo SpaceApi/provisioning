@@ -17,7 +17,7 @@
 - name: Start matterbridge container
   docker_container:
     name: matterbridge
-    image: 42wim/matterbridge:1.11.2
+    image: 42wim/matterbridge:1.14.1
     state: started
     restart: yes
     restart_policy: always
