@@ -6,4 +6,4 @@ jobs:
     steps:
       - checkout
       - run: sudo pip install ansible
-      - run: ansible-playbook --syntax-check -i inventory  playbooks/*.yml                                              
+      - run: cd deployment && ansible-playbook --syntax-check -i inventory.sh  playbooks/*.yml
