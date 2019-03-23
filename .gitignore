@@ -1,6 +1,5 @@
 *.swp
 *.retry
-vaultpass
 terraform.tfvars
 *.backup
 .idea
