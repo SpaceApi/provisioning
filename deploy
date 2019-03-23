@@ -19,13 +19,13 @@ cd ../deployment
 /usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass
 
 
-read -p "Dev deployed, press enter to destroy"
+read -p "Dev deployed, press enter to destroy. Ctrl + C to cancel."
 
 # cleanup dev
 cd ../nodes
 terraform destroy -auto-approve -var-file=dev.tfvars
 
-read -p "Press enter to deploy to prod"
+read -p "Press enter to deploy to prod. Ctrl + C to cancel."
 
 # prod
 terraform workspace select prod

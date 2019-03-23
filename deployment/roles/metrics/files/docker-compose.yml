@@ -1,0 +1,57 @@
+version: "3.0"
+
+services:
+  influx:
+    image: "influxdb:1.7-alpine"
+    networks:
+      - default
+    volumes:
+    - "${DATA_FOLDER}/influxdb:/var/lib/influxdb:rw"
+    labels:
+    - "traefik.enable=false"
+    environment:
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_DB: "spaceapi"
+      INFLUXDB_ADMIN_USER: "${INFLUXDB_ADMIN_USER}"
+      INFLUXDB_ADMIN_PASSWORD: "${INFLUXDB_ADMIN_PASSWORD}"
+      INFLUXDB_USER: "${INFLUXDB_USER}"
+      INFLUXDB_USER_PASSWORD: "${INFLUXDB_USER_PASSWORD}"
+
+  prometheus:
+    image: "prom/prometheus:v2.8.0"
+    depends_on:
+      - influx
+    networks:
+      - default
+      - traefik-web
+    labels:
+    - "traefik.enable=true"
+    - "traefik.port=9090"
+    - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
+    - "traefik.docker.network=traefik-web"
+    - "traefik.frontend.rule=Host:prometheus.${DOMAIN}"
+    volumes:
+    - "${DATA_FOLDER}/prometheus:/prometheus:rw"
+    - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+
+  grafana:
+    image: "grafana/grafana:6.0.2"
+    depends_on:
+      - prometheus
+    networks:
+      - default
+      - traefik-web
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_ADMIN_PASSWORD}"
+    volumes:
+    - "${DATA_FOLDER}/grafana:/var/lib/grafana"
+    labels:
+    - "traefik.enable=true"
+    - "traefik.port=3000"
+    - "traefik.docker.network=traefik-web"
+    - "traefik.frontend.rule=Host:metrics.${DOMAIN}"
+
+networks:
+  default:
+  traefik-web:
+    external: true
