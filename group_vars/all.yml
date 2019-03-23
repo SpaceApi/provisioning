@@ -4,3 +4,4 @@ ansible_ask_become_pass: yes
 docker_data_folder: /srv/docker
 motd_path: files/motd.txt
 domain: spaceapi.io
+docker_folder: /etc/docker
