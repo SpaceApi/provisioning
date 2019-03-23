@@ -1,23 +1,31 @@
 ---
 - name: Add Docker repository key.
-  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80
-    id=58118E89F3A912897C070ADBF76221572C52609D
+  apt_key:
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 
 - name: Install apt HTTPS transport and python-pip
   apt:
     pkg:
       - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
       - python-pip
     update-cache: yes
     cache_valid_time: 3600
 
 - name: Add Docker repository.
-  apt_repository: repo='deb https://apt.dockerproject.org/repo debian-{{ ansible_distribution_release }} main'
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
 
 - name: Install Docker.
   apt:
     pkg:
-      - docker-engine
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
     update-cache: yes
     cache_valid_time: 3600
 
@@ -29,13 +37,23 @@
     state: latest
 
 - name: Enable Docker.
-  service: name=docker state=started enabled=yes
+  service:
+    name: docker
+    state: started
+    enabled: yes
 
 - name: Don't change iptables with Docker.
-  lineinfile: dest=/etc/default/docker regexp="^DOCKER_OPTS"
-    line='DOCKER_OPTS="--iptables=false"' state=present
+  lineinfile:
+    dest: /etc/default/docker
+    regexp: "^DOCKER_OPTS"
+    line: 'DOCKER_OPTS="--iptables=false"'
+    state: present
   notify: restart docker
 
 - name: Create docker directory.
-  file: path=/srv/docker state=directory
-    owner=root group=docker mode=0755
+  file:
+    path: /srv/docker
+    state: directory
+    owner: root
+    group: docker
+    mode: 0755
