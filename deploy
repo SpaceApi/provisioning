@@ -16,7 +16,7 @@ terraform workspace select dev
 terraform apply -var-file=dev.tfvars
 
 cd ../deployment
-/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass
+/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass --extra-vars "domain=spaceapi.rocks"
 
 
 read -p "Dev deployed, press enter to destroy. Ctrl + C to cancel."
@@ -32,5 +32,5 @@ terraform workspace select prod
 terraform apply -var-file=prod.tfvars
 
 cd ../deployment
-/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass
+/usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass --extra-vars "domain=spaceapi.io"
 

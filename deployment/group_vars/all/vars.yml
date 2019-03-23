@@ -4,4 +4,5 @@ ansible_ask_become_pass: yes
 docker_data_folder: /srv/docker
 docker_folder: /etc/docker
 motd_path: files/motd.txt
-domain: spaceapi.rocks
+
+default_basic_auth: "{{ vault_default_basic_auth }}"

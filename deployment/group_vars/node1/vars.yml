@@ -3,8 +3,6 @@ mattermost_bridge_bot_password: "{{ vault_mattermost_bridge_bot_password }}"
 mattermost_gh_hook_secretkey: "{{ vault_mattermost_gh_hook_secretkey }}"
 mattermost_gh_hook_id_default: "{{ vault_mattermost_gh_hook_id_default }}"
 
-default_basic_auth: "{{ vault_default_basic_auth }}"
-
 influxdb_admin_user: "{{ vault_influxdb_admin_user }}"
 influxdb_admin_password: "{{ vault_influxdb_admin_password }}"
 influxdb_user: "{{ vault_influxdb_user }}"
