@@ -1,7 +1,14 @@
 - name: Configure spaceapi directory
   block:
     - file:
-        path: /etc/docker/spaceapi_directory
+        path: "{{ docker_data_folder }}/spaceapi_directory"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - file:
+        path: "{{ docker_folder }}/spaceapi_directory"
         state: directory
         owner: root
         group: root
@@ -16,7 +23,7 @@
 
     - copy:
         src: docker-compose.yml
-        dest: /etc/docker/spaceapi_directory/docker-compose.yml
+        dest: "{{ docker_folder }}/spaceapi_directory/docker-compose.yml"
         owner: root
         group: root
         mode: 0755
