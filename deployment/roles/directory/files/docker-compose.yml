@@ -2,17 +2,29 @@ version: '3'
 
 services:
   web:
-    image: spaceapi/directory
+    image: spaceapi/directory-api
     expose:
       - "8080"
     restart: unless-stopped
     networks:
+      - default
       - traefik-web
     labels:
       - "traefik.enable=true"
       - "traefik.port=8080"
       - "traefik.frontend.rule=Host:directory.spaceapi.net,directory.${DOMAIN}"
+      - "traefik.docker.network=traefik-web"
+  collector:
+    image: spaceapi/directory-collector
+    restart: on-failure
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - default
+    volumes:
+      - "${DATA_FOLDER}:/srv/spaceapi"
 
 networks:
   traefik-web:
     external: true
+  default:
