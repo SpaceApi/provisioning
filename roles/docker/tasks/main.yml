@@ -24,9 +24,8 @@
 - name: Install docker-compose.
   pip:
     name:
-      - docker
-      - docker-compose
-    state: latest
+      - docker~=3.7.0
+      - docker-compose~=1.23.2
 
 - name: Enable Docker.
   service: name=docker state=started enabled=yes
