@@ -33,4 +33,4 @@ terraform destroy -auto-approve -var-file=dev.tfvars
 
 read -p "Press enter to deploy to prod. Ctrl + C to cancel."
 
-run prod spaceapi.io
+createAndProvision prod spaceapi.io
