@@ -10,3 +10,4 @@ influxdb_user_password: "{{ vault_influxdb_user_password }}"
 
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
 
+default_basic_auth: "{{ vault_default_basic_auth }}"

@@ -1,7 +1,10 @@
 *.swp
 *.retry
+<<<<<<< HEAD
 terraform.tfvars
 *.backup
 .idea
 .terraform
 
+=======
+>>>>>>> b2bee0409a1bde0ca7cbc3f15c91ab231537e75b
