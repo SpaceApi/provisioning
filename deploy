@@ -23,14 +23,17 @@ cd persistent
 terraform init
 terraform apply
 
-createAndProvision dev spaceapi.rocks
+read -p "Test changes in dev? " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    createAndProvision dev spaceapi.rocks
 
-read -p "Dev deployed, press enter to destroy. Ctrl + C to cancel."
+    read -p "Dev deployed, press enter to destroy. Ctrl + C to cancel."
 
-# cleanup dev
-cd ../nodes
-terraform destroy -auto-approve -var-file=dev.tfvars
+    # cleanup dev
+    cd ../nodes
+    terraform destroy -auto-approve -var-file=dev.tfvars
+fi
 
 read -p "Press enter to deploy to prod. Ctrl + C to cancel."
-
 createAndProvision prod spaceapi.io
