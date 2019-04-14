@@ -5,6 +5,7 @@
   roles:
     - { role: network }
     - { role: storage }
+    - { role: server_metrics }
     - { role: base, tags: ['base'] }
     - { role: mattermost, tags: ['mattermost'] }
     - { role: matterbridge, tags: ['matterbridge'] }

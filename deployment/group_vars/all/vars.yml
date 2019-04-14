@@ -7,3 +7,5 @@ motd_path: files/motd.txt
 domain: spaceapi.io
 
 default_basic_auth: "{{ vault_default_basic_auth }}"
+default_basic_auth_user: "{{ vault_default_basic_auth_user }}"
+default_basic_auth_password: "{{ vault_default_basic_auth_password }}"

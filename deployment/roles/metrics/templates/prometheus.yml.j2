@@ -14,6 +14,9 @@ scrape_configs:
     - targets: ['localhost:9090']
   - job_name: 'traefik'
     scheme: 'https'
+    basic_auth:
+      username: '{{ default_basic_auth_user }}'
+      password: '{{ default_basic_auth_password }}'
     static_configs:
     - targets: ['reverseproxy.{{ domain }}']
   - job_name: 'directory'
@@ -24,3 +27,6 @@ scrape_configs:
     scheme: 'https'
     static_configs:
     - targets: ['metrics.{{ domain }}']
+  - job_name: 'server'
+    static_configs:
+    - targets: ['{{ domain }}:9100']
