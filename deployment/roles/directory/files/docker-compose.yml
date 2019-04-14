@@ -12,15 +12,19 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=8080"
-      - "traefik.frontend.rule=Host:directory.spaceapi.net,directory.${DOMAIN}"
+      - "traefik.frontend.rule=Host:directory.${DOMAIN}"
       - "traefik.docker.network=traefik-web"
   collector:
     image: spaceapi/directory-collector
     restart: on-failure
     labels:
-      - "traefik.enable=false"
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+      - "traefik.frontend.rule=Host:directory.${DOMAIN};PathPrefixStrip:/collector"
+      - "traefik.docker.network=traefik-web"
     networks:
       - default
+      - traefik-web
     volumes:
       - "${DATA_FOLDER}:/srv/spaceapi"
 

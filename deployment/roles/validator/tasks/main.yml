@@ -11,5 +11,5 @@
     labels:
       traefik.enable: "true"
       traefik.docker.network: "traefik-web"
-      traefik.port: "80"
+      traefik.port: "8080"
       traefik.frontend.rule: "Host:validator.{{ domain }}"

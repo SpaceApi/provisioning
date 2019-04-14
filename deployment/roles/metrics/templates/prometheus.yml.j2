@@ -23,6 +23,11 @@ scrape_configs:
     scheme: 'https'
     static_configs:
     - targets: ['directory.{{ domain }}']
+  - job_name: 'directory scraper'
+    scheme: 'https'
+    metrics_path: '/collector/metrics'
+    static_configs:
+    - targets: ['directory.{{ domain }}']
   - job_name: 'grafana'
     scheme: 'https'
     static_configs:
