@@ -5,6 +5,7 @@ services:
     image: "influxdb:1.7-alpine"
     networks:
       - default
+    restart: always
     volumes:
     - "${DATA_FOLDER}/influxdb:/var/lib/influxdb:rw"
     labels:
@@ -24,6 +25,7 @@ services:
     networks:
       - default
       - traefik-web
+    restart: always
     labels:
     - "traefik.enable=true"
     - "traefik.port=9090"
@@ -41,6 +43,7 @@ services:
     networks:
       - default
       - traefik-web
+    restart: always
     environment:
       GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_ADMIN_PASSWORD}"
     volumes:
