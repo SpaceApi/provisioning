@@ -2,6 +2,19 @@ version: '3'
 
 services:
   web:
+    image: nginx
+    expose:
+      - "80"
+    restart: unless-stopped
+    networks:
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:directory.${DOMAIN}"
+    volumes:
+      - "${DATA_FOLDER}/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+  api:
     image: spaceapi/directory-api
     expose:
       - "8080"
@@ -12,7 +25,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=8080"
-      - "traefik.frontend.rule=Host:directory.${DOMAIN}"
+      - "traefik.frontend.rule=Host:api.${DOMAIN}"
       - "traefik.docker.network=traefik-web"
   collector:
     image: spaceapi/directory-collector
@@ -20,7 +33,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.port=8080"
-      - "traefik.frontend.rule=Host:directory.${DOMAIN};PathPrefixStrip:/collector"
+      - "traefik.frontend.rule=Host:api.${DOMAIN};PathPrefixStrip:/collector"
       - "traefik.docker.network=traefik-web"
     networks:
       - default
