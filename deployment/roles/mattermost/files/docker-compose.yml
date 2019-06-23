@@ -2,7 +2,7 @@ version: "2"
 
 services:
   db:
-    image: mattermost/mattermost-prod-db:5.9.0
+    image: mattermost/mattermost-prod-db:5.12.0
     restart: always
     volumes:
       - ${DATA_FOLDER}/db/var/lib/postgresql/data:/var/lib/postgresql/data
@@ -16,7 +16,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=mattermost
   app:
-    image: mattermost/mattermost-prod-app:5.9.0
+    image: mattermost/mattermost-prod-app:5.12.0
     restart: always
     labels:
       - "traefik.enable=false"
@@ -36,7 +36,7 @@ services:
     depends_on:
       - db
   web:
-    image: mattermost/mattermost-prod-web:5.9.0
+    image: mattermost/mattermost-prod-web:5.12.0
     expose:
       - "80"
     restart: always

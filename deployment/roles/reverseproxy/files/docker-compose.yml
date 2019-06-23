@@ -2,7 +2,7 @@ version: '3'
 
 services:
   reverse-proxy:
-    image: traefik:1.7.9
+    image: traefik:1.7.12
     command: --api --docker
     restart: always
     networks:

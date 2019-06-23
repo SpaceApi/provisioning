@@ -2,7 +2,7 @@ version: "3.0"
 
 services:
   influx:
-    image: "influxdb:1.7-alpine"
+    image: "influxdb:1.7.6-alpine"
     networks:
       - default
     restart: always
@@ -19,7 +19,7 @@ services:
       INFLUXDB_USER_PASSWORD: "${INFLUXDB_USER_PASSWORD}"
 
   prometheus:
-    image: "prom/prometheus:v2.8.0"
+    image: "prom/prometheus:v2.10.0"
     depends_on:
       - influx
     networks:
@@ -33,11 +33,10 @@ services:
     - "traefik.docker.network=traefik-web"
     - "traefik.frontend.rule=Host:prometheus.${DOMAIN}"
     volumes:
-    - "${DATA_FOLDER}/prometheus:/prometheus:rw"
     - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
 
   grafana:
-    image: "grafana/grafana:6.0.2"
+    image: "grafana/grafana:6.2.4"
     depends_on:
       - prometheus
     networks:
