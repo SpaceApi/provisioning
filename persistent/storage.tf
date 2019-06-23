@@ -10,10 +10,10 @@ resource "hcloud_volume" "dev" {
   location = "${var.location}"
 }
 
-output "storage dev" {
+output "storage_dev" {
   value = "${hcloud_volume.dev.id}"
 }
 
-output "storage prod" {
+output "storage_prod" {
   value = "${hcloud_volume.prod.id}"
 }

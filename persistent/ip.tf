@@ -16,28 +16,28 @@ resource "hcloud_floating_ip" "devv6" {
   home_location = "${var.location}"
 }
 
-output "ipv4 dev id" {
+output "ip_legacy_dev_id" {
   value = "${hcloud_floating_ip.devv4.id}"
 }
-output "ipv4 dev ip" {
+output "ip_legacy_dev_ip" {
   value = "${hcloud_floating_ip.devv4.ip_address}"
 }
-output "ipv6 dev id" {
+output "ip_dev_id" {
   value = "${hcloud_floating_ip.devv6.id}"
 }
-output "ipv6 dev ip" {
+output "ip_dev_ip" {
   value = "${hcloud_floating_ip.devv6.ip_network}"
 }
 
-output "ipv4 prod id" {
+output "ip_legacy_prod_id" {
   value = "${hcloud_floating_ip.prodv4.id}"
 }
-output "ipv4 prod ip" {
+output "ip_legacy_prod_ip" {
   value = "${hcloud_floating_ip.prodv4.ip_address}"
 }
-output "ipv6 prod id" {
+output "ip_prod_id" {
   value = "${hcloud_floating_ip.prodv6.id}"
 }
-output "ipv6 prod ip" {
+output "ip_prod_ip" {
   value = "${hcloud_floating_ip.prodv6.ip_network}"
 }

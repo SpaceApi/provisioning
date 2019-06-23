@@ -8,10 +8,10 @@ resource "hcloud_ssh_key" "gidsi_betelgeuse" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/R05weHRfGrywFon2qy/hJjxFoMLIlL5keOLyPbXrJsdf+GKcrOFu8QWXeCc2OejFI1snK4EddCHrZGmVnZgGlATDyRN+T3KD7ZJv15zssY+6wxR1HoaSIeRpR59RL0uDryWpON+IwAKCTSllAa/OtwVKLphg32yvLDXreXFJt5SIMjLFlZGCghMlQgrrpa/MGREclOxxevnbb1sBul1qhOcGAdoXHebTm42sV1/uzzrMMyS+enG0/rvCmco//7fUP5gRLjzdmm4z7QOVle1+m7m/pUdejm6cMw0b38CKoGvA6ycLziTnTeTn/UA0xKMHlJWrrC3aW5a/17HkTTZ4ywCHBXlLSgCr+RCbEkSh3GPBILlB90AcUpPrQhP+jcvsS4HsQMdsUGM00phQygTcUiSSdcBIMgvdk4ztbZ+XyhqshGisM8byUD6ppMR1G87uWaX7ZwNwD7DpgLxYLTXypKv66mzZQb4jj9LlpHta61Ir2sUDlM0iZgaZsYrhmlmKtrIng5YgrD/3rsTAY9mB7c5Cln11JKRVpXGKwu+2H1wzmvSgVIsmFbHoS+99z2f5KJGWNa8bupZpjexTbD2aElBuablCkSTFnc9tcXsC1HtUTHbi/diWZkf5R7pdB5Njvc4KnqWFxyeHOeipCw1SL3qOXYEiUqTTDzB9+SfBJw== gidsi@betelgeuse"
 }
 
-output "ssh key id1" {
+output "ssh_key_id1" {
   value = "${hcloud_ssh_key.gidsi_scraps.id}"
 }
 
-output "ssh key id2" {
+output "ssh_key_id2" {
   value = "${hcloud_ssh_key.gidsi_betelgeuse.id}"
 }
