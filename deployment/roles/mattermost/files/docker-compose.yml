@@ -54,18 +54,6 @@ services:
     depends_on:
       - app
 
-  githubintegration:
-    build: githubintegration/.
-    restart: always
-    networks:
-      - traefik-web
-    labels:
-      - "traefik.enable=true"
-      - "traefik.port=5000"
-      - "traefik.frontend.rule=Host:gh.chat.${DOMAIN}"
-    expose:
-      - "5000"
-
 networks:
   default:
   traefik-web:
