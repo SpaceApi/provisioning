@@ -1,22 +1,29 @@
 
-    Welcome!
-  SPACEAPI.NET             *     .--.
-                                / /  `
-               +               | |
-                      '         \ \__,
-                  *          +   '--'  *
-                      +   /\
-         +              .'  '.   *
-                *      /======\      +
-                      ;:.  _   ;
-                      |:. (_)  |
-                      |:.  _   |
-            +         |:. (_)  |          *
-                      ;:.      ;
-                    .' \:.    / `.
-                   / .-'':._.'`-. \
-                   |/    /||\    \|
-             jgs _..--"""````"""--.._
-           _.-'``                    ``'-._
-         -'                                '-
+                    WELCOME TO SPACEAPI
+
+            `.--.                          .--.`
+         /yNMMMMy          .+hh+.          yMMMMNy/
+       .mMMMNyoo/        /dNNNNNNd/        /ooyNMMMm.
+       mMMMd`          :mNNNNNNNNNNm:          `dMMMm
+      .MMMM/          oNNNNNNNNNNNNNNo          /MMMM.
+      .MMMM+         +NNNNNNNmmNNNNNNN+         +MMMM.
+       mMMMy        `NNNNNm+`  `:dNNNNN`        hMMMm
+       oMMMN        :NNNmm/      .NNNNN:        NMMMo
+       -MMMM:       -MNNNNs      :mNNNm-       :MMMM-
+       `MMMM/        mMNNNNh/--:smmmNNd        /MMMM`
+       sMMMm`       sNNNNmmdhhhdhdmmmmm+       `mMMMs
+    .dNMMmo`       +NNNmmmhysyhddddddhhh/       `omMMNd.
+    .dNMMmo`      -NNNNNmmmmmmmmdhhhhyssy.      `omMMNd.
+       sMMMm`     hNNNNNNNNNNNNmmmdyyooss+     `mMMMs
+       `MMMM/    .NNNNNNNMNyhddhyNmmdhhmmm.    /MMMM`
+       -MMMM:    /NNNMNMNm-      -dmNNNNNN/    :MMMM-
+       oMMMN     oMMMMMNm` /Nmmm: `mMMMMMMo     NMMMo
+       mMMMh     +MMMMMM- .NMMMMN. -NMNMMM+     hMMMm
+      .MMMM+     :MMMMMh  sMMMMMMs  hMMMMM:     +MMMM.
+      .MMMM/      .....`  yMMMMMMy  `.....      /MMMM.
+       mMMMd`             +MMMMMMo             `dMMMm
+       .mMMMNyso/         `NMMMMN.         /osyNMMMm.
+         /yNMMMMy          :MMMM+          yMMMMNy/
+            `.--.           :NM+           .--.`
+                             .-
 
