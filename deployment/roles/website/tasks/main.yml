@@ -7,6 +7,8 @@
     restart_policy: always
     networks:
       - name: traefik-web
+    purge_networks: yes
+    networks_cli_compatible: no
     labels:
       traefik.enable: "true"
       traefik.docker.network: "traefik-web"

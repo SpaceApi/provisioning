@@ -38,7 +38,7 @@
       state: present
 
 - name: Run traefik
-  docker_service:
+  docker_compose:
     project_src: "{{ docker_folder }}/traefik"
     nocache: yes
     state: present

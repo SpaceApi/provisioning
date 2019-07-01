@@ -10,8 +10,8 @@
     - file:
         path: "{{ docker_data_folder }}/metrics/grafana"
         state: directory
-        owner: 472
-        group: 472
+        owner: "472"
+        group: "472"
         mode: 0755
 
     - file:
@@ -50,7 +50,7 @@
         mode: 0755
 
 - name: Run metrics directory
-  docker_service:
+  docker_compose:
     project_src: "{{ docker_folder }}/metrics"
     recreate: always
     build: yes
