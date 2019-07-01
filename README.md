@@ -4,7 +4,7 @@ Provisioning for the SpaceAPI infrastructure.
 
 ## prerequisite
 
-You need ansible, gopass and terraform installed to run this project
+You need ansible, gopass and terraform >= 0.12 installed to run this project
 
 ## deployment
 
