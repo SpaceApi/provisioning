@@ -36,7 +36,7 @@
         mode: 0755
 
 - name: Run spaceapi directory
-  docker_service:
+  docker_compose:
     project_src: /etc/docker/spaceapi_directory
     recreate: always
     build: yes
