@@ -41,6 +41,16 @@ services:
     environment:
       GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_ADMIN_PASSWORD}"
       GF_INSTALL_PLUGINS: "grafana-piechart-panel,raintank-worldping-app"
+      GF_SERVER_ROOT_URL: "https://metrics.${DOMAIN}"
+      GF_AUTH_GITHUB_ENABLED: "true"
+      GF_AUTH_GITHUB_CLIENT_ID: "73266238aea7c61b4e86"
+      GF_AUTH_GITHUB_CLIENT_SECRET: "${GRAFANA_GITHUB_CLIENT_SECRET}"
+      GF_AUTH_GITHUB_SCOPES: "user:email,read:org"
+      GF_AUTH_GITHUB_AUTH_URL: "https://github.com/login/oauth/authorize"
+      GF_AUTH_GITHUB_TOKEN_URL: "https://github.com/login/oauth/access_token"
+      GF_AUTH_GITHUB_API_URL: "https://api.github.com/user"
+      GF_AUTH_GITHUB_ALLOW_SIGN_UP: "true"
+      GF_AUTH_GITHUB_ALLOWED_ORGANIZATIONS: "spaceapi spaceapi-community"
     volumes:
     - "${DATA_FOLDER}/grafana:/var/lib/grafana"
     labels:

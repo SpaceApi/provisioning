@@ -9,5 +9,6 @@ influxdb_user: "{{ vault_influxdb_user }}"
 influxdb_user_password: "{{ vault_influxdb_user_password }}"
 
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
+grafana_github_client_secret: "{{ vault_grafana_github_client_secret }}"
 
 default_basic_auth: "{{ vault_default_basic_auth }}"
