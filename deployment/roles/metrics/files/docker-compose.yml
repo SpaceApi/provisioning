@@ -1,22 +1,18 @@
 version: "3.0"
 
 services:
-  influx:
-    image: "influxdb:1.7.6-alpine"
+  victoriametrics:
+    image: victoriametrics/victoria-metrics
+    volumes:
+      - "${DATA_FOLDER}/victoriametrics:/storage:rw"
+    command:
+      - '--storageDataPath=/storage'
+      - '--graphiteListenAddr=:2003'
+      - '--opentsdbListenAddr=:4242'
+      - '--httpListenAddr=:8428'
     networks:
       - default
     restart: always
-    volumes:
-    - "${DATA_FOLDER}/influxdb:/var/lib/influxdb:rw"
-    labels:
-    - "traefik.enable=false"
-    environment:
-      INFLUXDB_ADMIN_ENABLED: "true"
-      INFLUXDB_DB: "spaceapi"
-      INFLUXDB_ADMIN_USER: "${INFLUXDB_ADMIN_USER}"
-      INFLUXDB_ADMIN_PASSWORD: "${INFLUXDB_ADMIN_PASSWORD}"
-      INFLUXDB_USER: "${INFLUXDB_USER}"
-      INFLUXDB_USER_PASSWORD: "${INFLUXDB_USER_PASSWORD}"
 
   prometheus:
     image: "prom/prometheus:v2.10.0"
