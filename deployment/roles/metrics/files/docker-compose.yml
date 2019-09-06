@@ -2,14 +2,13 @@ version: "3.0"
 
 services:
   victoriametrics:
-    image: victoriametrics/victoria-metrics
+    image: "victoriametrics/victoria-metrics:v1.27.2"
     volumes:
       - "${DATA_FOLDER}/victoriametrics:/storage:rw"
     command:
-      - '--storageDataPath=/storage'
-      - '--graphiteListenAddr=:2003'
-      - '--opentsdbListenAddr=:4242'
-      - '--httpListenAddr=:8428'
+      - "--storageDataPath=/storage"
+      - "--retentionPeriod=120"
+      - "--httpListenAddr=:8428"
     networks:
       - default
     restart: always
