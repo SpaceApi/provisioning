@@ -59,6 +59,34 @@ services:
     - "traefik.docker.network=traefik-web"
     - "traefik.frontend.rule=Host:metrics.${DOMAIN}"
 
+  cadvisor:
+    image: google/cadvisor
+    networks:
+      - default
+      - traefik-web
+    restart: always
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+      - "/dev/disk/:/dev/disk:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik-web"
+      - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
+      - "traefik.frontend.rule=Host:cadvisor.${DOMAIN}"
+
+  nodeexporter:
+    image: quay.io/prometheus/node-exporter
+    network_mode: "host"
+    pid: "host"
+    command: "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro,rslave"
+
+
 networks:
   default:
   traefik-web:
