@@ -1,0 +1,8 @@
+route:
+  receiver: "mattermost"
+  group_by: [ "alertname" ]
+
+receivers:
+  - name: "mattermost"
+    webhook_configs:
+    - url: "https://chat.{{ domain }}/plugins/com.cpanato.alertmanager/api/webhook?token={{ mattermost_alertmanager_token }}"

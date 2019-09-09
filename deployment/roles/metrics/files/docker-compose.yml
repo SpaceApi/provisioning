@@ -11,6 +11,8 @@ services:
       - "--httpListenAddr=:8428"
     networks:
       - default
+    labels:
+      - "traefik.enable=false"
     restart: always
 
   prometheus:
@@ -29,6 +31,25 @@ services:
     - "traefik.frontend.rule=Host:prometheus.${DOMAIN}"
     volumes:
     - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+    - "${DATA_FOLDER}/alert.rules:/alert.rules:ro"
+
+  alertmanager:
+    image: prom/alertmanager
+    volumes:
+      - "${DATA_FOLDER}/alertmanager.yml:/alertmanager.yml:ro"
+      - "${DATA_FOLDER}/alertmanager:/data"
+    command:
+      - "--config.file=/alertmanager.yml"
+      - "--storage.path=/data"
+    networks:
+      - default
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=9093"
+      - "traefik.docker.network=traefik-web"
+      - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
+      - "traefik.frontend.rule=Host:alertmanager.${DOMAIN}"
 
   grafana:
     image: "grafana/grafana:6.2.4"

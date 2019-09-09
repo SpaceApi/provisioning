@@ -49,6 +49,20 @@
         group: root
         mode: 0755
 
+    - copy:
+        src: alert.rules
+        dest: "{{ docker_data_folder }}/metrics/alert.rules"
+        owner: root
+        group: root
+        mode: 0755
+
+    - template:
+        src: alertmanager.yml.j2
+        dest: "{{ docker_data_folder }}/metrics/alertmanager.yml"
+        owner: root
+        group: root
+        mode: 0755
+
 - name: Run metrics directory
   docker_compose:
     project_src: "{{ docker_folder }}/metrics"

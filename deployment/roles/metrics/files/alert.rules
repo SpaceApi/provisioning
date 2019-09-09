@@ -1,0 +1,20 @@
+groups:
+- name: targets
+  rules:
+  - alert: monitor_service_down
+    expr: up == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Monitor service non-operational"
+      description: "Service {{ $labels.instance }} is down."
+
+  - alert: disk_full
+    expr: node_filesystem_free_bytes{fstype="ext4"} < 1073741824
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Disk nearly full"
+      description: "a disks on {{ $labels.instance }} has less then 1GB free space left."
