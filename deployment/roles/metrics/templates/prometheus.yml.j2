@@ -9,6 +9,15 @@ remote_write:
       max_samples_per_send: 10000
       max_shards: 30
 
+rule_files:
+  - '/alert.rules'
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - alertmanager:9093
+
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
