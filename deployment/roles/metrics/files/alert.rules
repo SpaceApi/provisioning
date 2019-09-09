@@ -11,10 +11,28 @@ groups:
       description: "Service {{ $labels.instance }} is down."
 
   - alert: disk_full
-    expr: node_filesystem_free_bytes{fstype="ext4"} < 1073741824
+    expr: node_filesystem_free_bytes{fstype="ext4"} / node_filesystem_size_bytes{fstype="ext4"} * 100 < 10
     for: 1m
     labels:
       severity: critical
     annotations:
       summary: "Disk nearly full"
-      description: "a disks on {{ $labels.instance }} has less then 1GB free space left."
+      description: "a disks on {{ $labels.instance }} has less then 10% free space left."
+
+  - alert: ram_full
+    expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 10
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Memory nearly full"
+      description: "the ram on {{ $labels.instance }} has less then 10% free space left"
+
+  - alert: high_cpu_load
+    expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU load (instance {{ $labels.instance }})"
+      description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
