@@ -1,13 +1,13 @@
 - name: Run watchtower
   docker_container:
     name: watchtower
-    image: v2tec/watchtower
+    image: containrrr/watchtower
     state: started
     recreate: yes
     restart_policy: always
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-    command: "--interval {{ watchtower_interval }} --cleanup {{ watchtower_targets | join(' ') }}"
+    command: "--interval {{ watchtower_interval }} --cleanup --label-enable"
     env:
       WATCHTOWER_NOTIFICATIONS: slack
       WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: "https://chat.{{ domain }}/hooks/{{ vault_watchtower_mattermost_token }}"
