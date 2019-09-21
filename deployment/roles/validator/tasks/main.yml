@@ -15,3 +15,4 @@
       traefik.docker.network: "traefik-web"
       traefik.port: "8080"
       traefik.frontend.rule: "Host:validator.{{ domain }}"
+      com.centurylinklabs.watchtower.enable: "true"

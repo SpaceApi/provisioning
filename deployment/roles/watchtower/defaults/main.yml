@@ -1,4 +1,1 @@
 watchtower_interval: 60 # seconds
-watchtower_targets:
-  - website
-  - validator
