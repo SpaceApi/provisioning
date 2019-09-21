@@ -9,6 +9,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     labels:
       - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - default
     environment:
@@ -20,6 +21,7 @@ services:
     restart: always
     labels:
       - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - ${DATA_FOLDER}/app/mattermost/config:/mattermost/config:rw
       - ${DATA_FOLDER}/app/mattermost/data:/mattermost/data:rw
@@ -48,6 +50,7 @@ services:
       - "traefik.docker.network=traefik-web"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:chat.${DOMAIN}"
+      - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - ${DATA_FOLDER}/web/cert:/cert:ro
       - /etc/localtime:/etc/localtime:ro
