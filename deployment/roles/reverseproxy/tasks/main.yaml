@@ -29,8 +29,8 @@
       group: root
       mode: 0755
 
-  - template:
-      src: traefik.toml.j2
+  - copy:
+      src: traefik.toml
       dest: "{{ docker_data_folder }}/traefik/traefik.toml"
 
   - copy:
