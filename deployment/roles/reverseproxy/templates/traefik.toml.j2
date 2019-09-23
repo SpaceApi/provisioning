@@ -27,6 +27,7 @@
 [providers]
   [providers.docker]
     endpoint = "unix:///var/run/docker.sock"
+    defaultRule = "Host(`{{ '{{ .Name }}' }}.{{ domain }}`)"
     exposedByDefault = false
     network = "traefik-web"
   [providers.file]

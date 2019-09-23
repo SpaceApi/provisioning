@@ -26,10 +26,9 @@ services:
     restart: always
     labels:
     - "traefik.enable=true"
-    - "traefik.port=9090"
-    - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
-    - "traefik.docker.network=traefik-web"
-    - "traefik.frontend.rule=Host:prometheus.${DOMAIN}"
+    - "traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN}`)"
+    - "traefik.http.routers.prometheus.tls.certresolver=letsencrypt"
+    - "traefik.http.routers.prometheus.middlewares=secure-intern@file"
     - "com.centurylinklabs.watchtower.enable=true"
     volumes:
     - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
@@ -48,10 +47,9 @@ services:
       - traefik-web
     labels:
       - "traefik.enable=true"
-      - "traefik.port=9093"
-      - "traefik.docker.network=traefik-web"
-      - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
-      - "traefik.frontend.rule=Host:alertmanager.${DOMAIN}"
+      - "traefik.http.routers.alertmanager.rule=Host(`alertmanager.${DOMAIN}`)"
+      - "traefik.http.routers.alertmanager.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.alertmanager.middlewares=secure-intern@file"
       - "com.centurylinklabs.watchtower.enable=true"
 
   grafana:
@@ -79,9 +77,8 @@ services:
     - "${DATA_FOLDER}/grafana:/var/lib/grafana"
     labels:
     - "traefik.enable=true"
-    - "traefik.port=3000"
-    - "traefik.docker.network=traefik-web"
-    - "traefik.frontend.rule=Host:metrics.${DOMAIN}"
+    - "traefik.http.routers.metrics.rule=Host(`metrics.${DOMAIN}`)"
+    - "traefik.http.routers.metrics.tls.certresolver=letsencrypt"
     - "com.centurylinklabs.watchtower.enable=true"
 
   cadvisor:
@@ -98,10 +95,9 @@ services:
       - "/dev/disk/:/dev/disk:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.port=8080"
-      - "traefik.docker.network=traefik-web"
-      - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
-      - "traefik.frontend.rule=Host:cadvisor.${DOMAIN}"
+      - "traefik.http.routers.cadvisor.rule=Host(`cadvisor.${DOMAIN}`)"
+      - "traefik.http.routers.cadvisor.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.cadvisor.middlewares=secure-intern@file"
       - "com.centurylinklabs.watchtower.enable=true"
 
   nodeexporter:

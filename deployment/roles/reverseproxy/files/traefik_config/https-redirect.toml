@@ -1,0 +1,14 @@
+[http.routers]
+  [http.routers.https-redirect]
+  rule = "HostRegexp(`{any:.*}`)"
+  middlewares = ["https-redirect"]
+  service = "dummy"
+
+[http.middlewares]
+  [http.middlewares.https-redirect.redirectscheme]
+    scheme = "https"
+
+[http.services]
+  [http.services.dummy.LoadBalancer]
+     [[http.services.dummy.LoadBalancer.servers]]
+        url = ""

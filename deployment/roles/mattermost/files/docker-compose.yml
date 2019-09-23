@@ -47,9 +47,8 @@ services:
       - default
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=traefik-web"
-      - "traefik.port=80"
-      - "traefik.frontend.rule=Host:chat.${DOMAIN}"
+      - "traefik.http.routers.chat.rule=Host(`chat.${DOMAIN}`)"
+      - "traefik.http.routers.chat.tls.certresolver=letsencrypt"
       - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - ${DATA_FOLDER}/web/cert:/cert:ro

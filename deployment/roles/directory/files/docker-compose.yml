@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  web:
+  directory:
     image: nginx
     expose:
       - "80"
@@ -10,8 +10,8 @@ services:
       - traefik-web
     labels:
       - "traefik.enable=true"
-      - "traefik.port=80"
-      - "traefik.frontend.rule=Host:directory.${DOMAIN}"
+      - "traefik.http.routers.directory.rule=Host(`directory.${DOMAIN}`)"
+      - "traefik.http.routers.directory.tls.certresolver=letsencrypt"
       - "com.centurylinklabs.watchtower.enable=true"
     volumes:
       - "${DATA_FOLDER}/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
@@ -25,18 +25,18 @@ services:
       - traefik-web
     labels:
       - "traefik.enable=true"
-      - "traefik.port=8080"
-      - "traefik.frontend.rule=Host:api.${DOMAIN}"
-      - "traefik.docker.network=traefik-web"
+      - "traefik.http.routers.directory-api.rule=Host(`api.${DOMAIN}`)"
+      - "traefik.http.routers.directory-api.tls.certresolver=letsencrypt"
       - "com.centurylinklabs.watchtower.enable=true"
   collector:
     image: spaceapi/directory-collector
     restart: on-failure
     labels:
       - "traefik.enable=true"
-      - "traefik.port=8080"
-      - "traefik.frontend.rule=Host:api.${DOMAIN};PathPrefixStrip:/collector"
-      - "traefik.docker.network=traefik-web"
+      - "traefik.http.routers.directory-collector.rule=Host(`api.${DOMAIN}`) && PathPrefix(`/collector`)"
+      - "traefik.http.routers.directory-collector.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.directory-collector.middlewares=collector-stripprefix"
+      - "traefik.http.middlewares.collector-stripprefix.stripprefix.prefixes=/collector"
       - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - default
