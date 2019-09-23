@@ -13,6 +13,7 @@ services:
       - default
     labels:
       - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
     restart: always
 
   prometheus:
@@ -29,6 +30,7 @@ services:
     - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
     - "traefik.docker.network=traefik-web"
     - "traefik.frontend.rule=Host:prometheus.${DOMAIN}"
+    - "com.centurylinklabs.watchtower.enable=true"
     volumes:
     - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
     - "${DATA_FOLDER}/alert.rules:/alert.rules:ro"
@@ -50,6 +52,7 @@ services:
       - "traefik.docker.network=traefik-web"
       - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
       - "traefik.frontend.rule=Host:alertmanager.${DOMAIN}"
+      - "com.centurylinklabs.watchtower.enable=true"
 
   grafana:
     image: "grafana/grafana:6.2.4"
@@ -79,6 +82,7 @@ services:
     - "traefik.port=3000"
     - "traefik.docker.network=traefik-web"
     - "traefik.frontend.rule=Host:metrics.${DOMAIN}"
+    - "com.centurylinklabs.watchtower.enable=true"
 
   cadvisor:
     image: google/cadvisor
@@ -98,6 +102,7 @@ services:
       - "traefik.docker.network=traefik-web"
       - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
       - "traefik.frontend.rule=Host:cadvisor.${DOMAIN}"
+      - "com.centurylinklabs.watchtower.enable=true"
 
   nodeexporter:
     image: quay.io/prometheus/node-exporter
@@ -106,7 +111,9 @@ services:
     command: "--path.rootfs=/host"
     volumes:
       - "/:/host:ro,rslave"
-
+    labels:
+      - "traefik.enable=false"
+      - "com.centurylinklabs.watchtower.enable=true"
 
 networks:
   default:

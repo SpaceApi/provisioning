@@ -13,6 +13,7 @@ services:
       - "traefik.docker.network=traefik-web"
       - "traefik.port=8080"
       - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
+      - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - "80:80"
       - "443:443"
