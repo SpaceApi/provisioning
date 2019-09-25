@@ -28,7 +28,7 @@ provider "hcloud" {
 
 resource "hcloud_server" "node1" {
   name = "node1.${var.domain}"
-  image = "debian-9"
+  image = "debian-10"
   server_type = "cx11"
   location = "nbg1"
   ssh_keys = "${var.ssh_key_ids}"
