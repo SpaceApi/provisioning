@@ -33,6 +33,14 @@
       src: traefik.toml
       dest: "{{ docker_data_folder }}/traefik/traefik.toml"
 
+  - copy:
+      src: "traefik_config/"
+      dest: "{{ docker_data_folder }}/traefik/config"
+
+  - template:
+      src: basic_auth_middleware.toml.j2
+      dest: "{{ docker_data_folder }}/traefik/config/basic_auth_middleware.toml"
+
   - docker_network:
       name: traefik-web
       state: present

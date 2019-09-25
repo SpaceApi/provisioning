@@ -11,8 +11,6 @@
     networks_cli_compatible: no
     labels:
       traefik.enable: "true"
-      traefik.docker.network: "traefik-web"
-      traefik.port: "80"
-      traefik.frontend.rule: "Host:{{ domain }}"
+      traefik.http.routers.website.rule: "Host(`{{ domain }}`)"
+      traefik.http.routers.website.tls.certresolver: "letsencrypt"
       com.centurylinklabs.watchtower.enable: "true"
-

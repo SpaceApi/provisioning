@@ -1,26 +1,27 @@
 version: '3'
 
 services:
-  reverse-proxy:
-    image: traefik:1.7.12
-    command: --api --docker
+  reverseproxy:
+    image: traefik:2.0
     restart: always
     networks:
      - traefik-web
     labels:
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:reverseproxy.${DOMAIN}"
-      - "traefik.docker.network=traefik-web"
-      - "traefik.port=8080"
-      - "traefik.frontend.auth.basic.users=${BASIC_AUTH}"
       - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.reverseproxy.rule=Host(`reverseproxy.spaceapi.rocks`)"
+      - "traefik.http.routers.reverseproxy.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.reverseproxy.service=api@internal"
+      - "traefik.http.routers.reverseproxy.middlewares=secure-intern@file"
     ports:
       - "80:80"
       - "443:443"
+    expose:
+      - "8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DATA_FOLDER}/acme:/etc/traefik/acme
-      - ${DATA_FOLDER}/traefik.toml:/etc/traefik/traefik.toml
+      - ${DATA_FOLDER}/:/etc/traefik/
 
 networks:
   traefik-web:

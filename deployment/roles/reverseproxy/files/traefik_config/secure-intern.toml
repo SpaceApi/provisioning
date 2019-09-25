@@ -1,0 +1,2 @@
+[http.middlewares.secure-intern.chain]
+  middlewares = ["auth"]

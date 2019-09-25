@@ -23,25 +23,17 @@ scrape_configs:
     static_configs:
     - targets: ['localhost:9090']
   - job_name: 'traefik'
-    scheme: 'https'
-    basic_auth:
-      username: '{{ default_basic_auth_user }}'
-      password: '{{ default_basic_auth_password }}'
     static_configs:
-    - targets: ['reverseproxy.{{ domain }}']
+    - targets: ['reverseproxy:8080']
   - job_name: 'directory'
-    scheme: 'https'
     static_configs:
-    - targets: ['api.{{ domain }}']
+    - targets: ['api:8080']
   - job_name: 'directory scraper'
-    scheme: 'https'
-    metrics_path: '/collector/metrics'
     static_configs:
-    - targets: ['api.{{ domain }}']
+    - targets: ['collector:8080']
   - job_name: 'grafana'
-    scheme: 'https'
     static_configs:
-    - targets: ['metrics.{{ domain }}']
+    - targets: ['grafana:3000']
   - job_name: 'server'
     static_configs:
     - targets: ['{{ domain }}:9100']
