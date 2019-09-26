@@ -9,7 +9,7 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
-      - "traefik.http.routers.reverseproxy.rule=Host(`reverseproxy.spaceapi.rocks`)"
+      - "traefik.http.routers.reverseproxy.rule=Host(`reverseproxy.${DOMAIN}`)"
       - "traefik.http.routers.reverseproxy.tls.certresolver=letsencrypt"
       - "traefik.http.routers.reverseproxy.service=api@internal"
       - "traefik.http.routers.reverseproxy.middlewares=secure-intern@file"
