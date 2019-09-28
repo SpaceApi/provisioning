@@ -31,7 +31,4 @@
 - name: Run mattermost + integrations
   docker_compose:
     project_src: /etc/docker/mattermost
-    recreate: always
-    build: yes
-    nocache: yes
     state: present
