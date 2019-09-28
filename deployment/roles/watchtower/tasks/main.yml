@@ -3,7 +3,6 @@
     name: watchtower
     image: containrrr/watchtower
     state: started
-    recreate: yes
     restart_policy: always
     labels:
       com.centurylinklabs.watchtower.enable: "true"

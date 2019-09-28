@@ -2,7 +2,7 @@ version: "3.0"
 
 services:
   victoriametrics:
-    image: "victoriametrics/victoria-metrics:v1.27.2"
+    image: victoriametrics
     volumes:
       - "${DATA_FOLDER}/victoriametrics:/storage:rw"
     command:
@@ -17,7 +17,7 @@ services:
     restart: always
 
   prometheus:
-    image: "prom/prometheus:v2.10.0"
+    image: prom/prometheus
     depends_on:
       - victoriametrics
     networks:
@@ -54,7 +54,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
   grafana:
-    image: "grafana/grafana:6.2.4"
+    image: grafana/grafana
     depends_on:
       - prometheus
     networks:
