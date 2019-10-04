@@ -2,7 +2,7 @@ version: "3.0"
 
 services:
   victoriametrics:
-    image: victoriametrics
+    image: victoriametrics/victoria-metrics
     volumes:
       - "${DATA_FOLDER}/victoriametrics:/storage:rw"
     command:
