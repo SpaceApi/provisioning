@@ -3,15 +3,17 @@
   # become: yes
   user: root
   roles:
+    # server setup
     - { role: network }
     - { role: storage }
     - { role: base, tags: ['base'] }
+    - { role: motd, tags: ['motd'] }
+
+    # services
     - { role: mattermost, tags: ['mattermost'] }
     - { role: matterbridge, tags: ['matterbridge'] }
-    - { role: motd, tags: ['motd'] }
-    - { role: docker, tags: ['docker'] }
-    - { role: watchtower, tags: ['watchtower'] }
     - { role: website, tags: ['website'] }
     - { role: directory, tags: ['directory'] }
     - { role: validator, tags: ['validator'] }
     - { role: metrics, tags: ['metrics'] }
+    - { role: github_bot, tags: ['github_bot']}

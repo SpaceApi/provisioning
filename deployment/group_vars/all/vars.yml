@@ -9,3 +9,10 @@ domain: spaceapi.io
 default_basic_auth: "{{ vault_default_basic_auth }}"
 default_basic_auth_user: "{{ vault_default_basic_auth_user }}"
 default_basic_auth_password: "{{ vault_default_basic_auth_password }}"
+
+github_bot_webhook_proxy_url: "{{ vault_github_bot_webhook_proxy_url }}"
+github_bot_app_id: "{{ vault_github_bot_app_id }}"
+github_bot_private_key: "{{ vault_github_bot_private_key }}"
+github_bot_webhook_secret: "{{ vault_github_bot_webhook_secret }}"
+github_bot_mongo_db_password: "{{ vault_github_bot_mongo_db_password }}"
+
