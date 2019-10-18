@@ -3,6 +3,7 @@ version: '3'
 services:
   reverseproxy:
     image: traefik:2.0
+    restart: always
     networks:
      - traefik-web
     labels:
