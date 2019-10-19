@@ -8,6 +8,8 @@
     - { role: storage }
     - { role: base, tags: ['base'] }
     - { role: motd, tags: ['motd'] }
+    - { role: docker, tags: ['docker'] }
+    - { role: watchtower, tags: ['watchtower'] }
 
     # services
     - { role: mattermost, tags: ['mattermost'] }
