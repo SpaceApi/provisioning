@@ -10,6 +10,8 @@
     networks_cli_compatible: no
     labels:
       traefik.enable: "true"
-      traefik.http.routers.website.rule: "Host(`{{ domain }}`)"
+      traefik.http.routers.website.rule: "Host(`{{ domain }}`) || Host(`www.{{ domain }}`)"
       traefik.http.routers.website.tls.certresolver: "letsencrypt"
+      traefik.http.routers.website.tls.options: "default"
+      traefik.http.routers.website.middlewares: "security-headers@file"
       com.centurylinklabs.watchtower.enable: "true"

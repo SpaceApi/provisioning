@@ -41,6 +41,10 @@
       src: basic_auth_middleware.toml.j2
       dest: "{{ docker_data_folder }}/traefik/config/basic_auth_middleware.toml"
 
+  - template:
+      src: security-headers.toml.j2
+      dest: "{{ docker_data_folder }}/traefik/config/security-headers.toml"
+
   - docker_network:
       name: traefik-web
       state: present
