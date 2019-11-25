@@ -1,13 +1,12 @@
 variable "hetzner_token" {
-  type = "string"
+  type = string
 }
 
 variable "location" {
-  type = "string"
+  type = string
   default = "nbg1"
 }
 
 provider "hcloud" {
-  token = "${var.hetzner_token}"
+  token = var.hetzner_token
 }
-
