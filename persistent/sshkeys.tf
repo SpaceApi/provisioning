@@ -9,9 +9,9 @@ resource "hcloud_ssh_key" "gidsi_betelgeuse" {
 }
 
 output "ssh_key_id1" {
-  value = "${hcloud_ssh_key.gidsi_scraps.id}"
+  value = hcloud_ssh_key.gidsi_scraps.id
 }
 
 output "ssh_key_id2" {
-  value = "${hcloud_ssh_key.gidsi_betelgeuse.id}"
+  value = hcloud_ssh_key.gidsi_betelgeuse.id
 }
