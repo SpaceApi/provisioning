@@ -9,6 +9,7 @@ services:
       - "--storageDataPath=/storage"
       - "--retentionPeriod=120"
       - "--httpListenAddr=:8428"
+      - "--memory.allowedPercent=30"
     networks:
       - default
     labels:
