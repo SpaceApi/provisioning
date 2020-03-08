@@ -20,13 +20,13 @@ groups:
       description: "a disks on {{ $labels.instance }} has less then 10% free space left."
 
   - alert: ram_full
-    expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 10
+    expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 1
     for: 1m
     labels:
       severity: critical
     annotations:
       summary: "Memory nearly full"
-      description: "the ram on {{ $labels.instance }} has less then 10% free space left"
+      description: "the ram on {{ $labels.instance }} has less then 1% free space left"
 
   - alert: high_cpu_load
     expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
