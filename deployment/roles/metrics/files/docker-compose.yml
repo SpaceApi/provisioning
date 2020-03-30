@@ -10,6 +10,7 @@ services:
       - "--retentionPeriod=120"
       - "--httpListenAddr=:8428"
       - "--memory.allowedPercent=30"
+      - "--search.maxQueryLen=32768"
     networks:
       - default
     labels:
