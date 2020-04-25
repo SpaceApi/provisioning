@@ -34,4 +34,4 @@ environment.
 
 ## Things to do
 * Adding another ssh key recreates all machines.
-* volume id's have to be transfered manually into the environment files.
+* volume ids have to be transfered manually into the environment files.
