@@ -4,6 +4,7 @@ set -x
 
 cd "$(dirname "$0")"
 export TF_VAR_hetzner_token="$(gopass spaceapi/hetzner_cloud_token)"
+export TF_VAR_njalla_token="$(gopass spaceapi/njalla_token)"
 
 function autoDeploy {
     createPersistent

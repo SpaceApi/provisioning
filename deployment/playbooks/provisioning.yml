@@ -4,7 +4,6 @@
   user: root
   roles:
     # server setup
-    - { role: network }
     - { role: storage }
     - { role: base, tags: ['base'] }
     - { role: motd, tags: ['motd'] }
