@@ -10,14 +10,6 @@ variable "spaceapi_volume_id" {
   type = string
 }
 
-variable "spaceapi_ipv4_id" {
-  type = string
-}
-
-variable "spaceapi_ipv6_id" {
-  type = string
-}
-
 variable "ssh_key_ids" {
   type = list(string)
 }
@@ -47,17 +39,6 @@ resource "hcloud_volume_attachment" "main" {
   server_id = hcloud_server.node1.id
 }
 
-/*
-resource "hcloud_floating_ip_assignment" "node1_v4" {
-  floating_ip_id = var.spaceapi_ipv4_id
-  server_id = hcloud_server.node1.id
-}
-
-resource "hcloud_floating_ip_assignment" "node1_v6" {
-  floating_ip_id = var.spaceapi_ipv6_id
-  server_id = hcloud_server.node1.id
-}
-*/
 resource "njalla_domain_record" "node1_v4" {
   domain = var.domain
   name = "node1"
