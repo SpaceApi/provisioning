@@ -6,7 +6,7 @@
 
 - name: Install apt HTTPS transport and python-pip
   apt:
-    pkg:
+    name:
       - apt-transport-https
       - ca-certificates
       - curl
@@ -22,11 +22,11 @@
 
 - name: Install Docker.
   apt:
-    pkg:
+    name:
       - docker-ce
       - docker-ce-cli
       - containerd.io
-    update-cache: yes
+    update_cache: yes
     cache_valid_time: 3600
 
 - name: Install docker-compose.
@@ -34,7 +34,7 @@
     name:
       - docker~=3.7.2
       - docker-compose~=1.24.0
-    state: latest
+    state: present
 
 - name: Enable Docker.
   service:

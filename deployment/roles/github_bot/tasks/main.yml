@@ -1,28 +1,29 @@
 ---
 - name: Create service folder
-  block:
-  - file:
-      path: /etc/docker/github_bot
-      state: directory
-      owner: root
-      group: root
-      mode: 0755
+  file:
+    path: "{{ docker_folder }}/github_bot"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
-  - template:
-      src: env.j2
-      dest: /etc/docker/github_bot/.env
-      owner: root
-      group: root
-      mode: 0700
+- name: Add service configuration
+  template:
+    src: env.j2
+    dest: "{{ docker_folder }}/github_bot/.env"
+    owner: root
+    group: root
+    mode: 0700
 
-  - copy:
-      src: docker-compose.yml
-      dest: /etc/docker/github_bot/docker-compose.yml
-      owner: root
-      group: root
-      mode: 0700
+- name: Add docker-compose file
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_folder }}/github_bot/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0700
 
 - name: Run github_bot
   docker_compose:
-      project_src: "/etc/docker/github_bot"
+      project_src: "{{ docker_folder }}/github_bot"
       state: present

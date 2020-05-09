@@ -1,3 +1,4 @@
+---
 - name: Run validator
   docker_container:
     name: validator

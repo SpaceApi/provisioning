@@ -1,3 +1,4 @@
+---
 - name: Create data directory
   file:
     path: "{{ docker_data_folder }}/mattermost/matterbridge"

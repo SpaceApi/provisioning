@@ -1,4 +1,5 @@
 ---
-
 - name: Add custom motd.
-  template: src={{ motd_path }} dest=/etc/motd
+  template:
+    src: "{{ motd_path }}"
+    dest: /etc/motd
