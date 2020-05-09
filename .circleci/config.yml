@@ -2,8 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:2.7
+      - image: circleci/python:3
     steps:
       - checkout
-      - run: sudo pip install ansible
+      - run: sudo pip install ansible ansible-lint
+      - run: cd deployment && ansible-lint
       - run: cd deployment && ansible-playbook --syntax-check -i inventory.sh  playbooks/*.yml
