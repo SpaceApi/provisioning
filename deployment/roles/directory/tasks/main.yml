@@ -1,39 +1,43 @@
-- name: Configure spaceapi directory
-  block:
-    - file:
-        path: "{{ docker_data_folder }}/spaceapi_directory"
-        state: directory
-        owner: root
-        group: root
-        mode: 0755
+---
+- name: Create data directory
+  file:
+    path: "{{ docker_data_folder }}/spaceapi_directory"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
-    - copy:
-        src: nginx.conf
-        dest: "{{ docker_data_folder }}/spaceapi_directory/nginx.conf"
-        owner: root
-        group: root
-        mode: 0755
+- name: Add nginx config
+  copy:
+    src: nginx.conf
+    dest: "{{ docker_data_folder }}/spaceapi_directory/nginx.conf"
+    owner: root
+    group: root
+    mode: 0755
 
-    - file:
-        path: "{{ docker_folder }}/spaceapi_directory"
-        state: directory
-        owner: root
-        group: root
-        mode: 0755
+- name: Create service folder
+  file:
+    path: "{{ docker_folder }}/spaceapi_directory"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
-    - template:
-        src: env.j2
-        dest: "{{ docker_folder }}/spaceapi_directory/.env"
-        owner: root
-        group: root
-        mode: 0700
+- name: Add docker-compose service configuration
+  template:
+    src: env.j2
+    dest: "{{ docker_folder }}/spaceapi_directory/.env"
+    owner: root
+    group: root
+    mode: 0700
 
-    - copy:
-        src: docker-compose.yml
-        dest: "{{ docker_folder }}/spaceapi_directory/docker-compose.yml"
-        owner: root
-        group: root
-        mode: 0755
+- name: Add docker-compose file
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_folder }}/spaceapi_directory/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Run spaceapi directory
   docker_compose:

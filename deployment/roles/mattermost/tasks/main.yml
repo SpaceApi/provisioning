@@ -1,34 +1,37 @@
-- name: Deploy mattermost
-  block:
-      - file:
-          path: "{{ docker_data_folder }}/mattermost"
-          state: directory
-          owner: root
-          group: root
-          mode: 0755
+---
+- name: Create service data directory
+  file:
+    path: "{{ docker_data_folder }}/mattermost"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
-      - file:
-          path: /etc/docker/mattermost
-          state: directory
-          owner: root
-          group: root
-          mode: 0755
+- name: Create service directory
+  file:
+    path: "{{ docker_folder }}/mattermost"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
-      - template:
-          src: env.j2
-          dest: /etc/docker/mattermost/.env
-          owner: root
-          group: root
-          mode: 0700
+- name: Add service configuration
+  template:
+    src: env.j2
+    dest: "{{ docker_folder }}/mattermost/.env"
+    owner: root
+    group: root
+    mode: 0700
 
-      - copy:
-          src: docker-compose.yml
-          dest: /etc/docker/mattermost/docker-compose.yml
-          owner: root
-          group: root
-          mode: 0755
+- name: Add docker-compose file
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_folder }}/mattermost/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Run mattermost + integrations
   docker_compose:
-    project_src: /etc/docker/mattermost
+    project_src: "{{ docker_folder }}/mattermost"
     state: present

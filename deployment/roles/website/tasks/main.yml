@@ -1,3 +1,4 @@
+---
 - name: Run website
   docker_container:
     name: website

@@ -1,53 +1,60 @@
 ---
+- name: Create service folder
+  file:
+    path: "{{ docker_folder }}/traefik"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Add service configuration
+  template:
+    src: env.j2
+    dest: "{{ docker_folder }}/traefik/.env"
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Add docker-compose file
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_folder }}/traefik/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create certificate folder
+  file:
+    path: "{{ docker_data_folder }}/traefik/acme"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Configure traefik
-  block:
-  - file:
-      path: /etc/docker/traefik
-      state: directory
-      owner: root
-      group: root
-      mode: 0755
+  copy:
+    src: traefik.toml
+    dest: "{{ docker_data_folder }}/traefik/traefik.toml"
 
-  - template:
-      src: env.j2
-      dest: /etc/docker/traefik/.env
-      owner: root
-      group: root
-      mode: 0700
+- name: Create additional config for traefik
+  copy:
+    src: "traefik_config/"
+    dest: "{{ docker_data_folder }}/traefik/config"
 
-  - copy:
-      src: docker-compose.yml
-      dest: /etc/docker/traefik/docker-compose.yml
-      owner: root
-      group: root
-      mode: 0755
+- name: Basic auth configuration
+  template:
+    src: basic_auth_middleware.toml.j2
+    dest: "{{ docker_data_folder }}/traefik/config/basic_auth_middleware.toml"
 
-  - file:
-      path: "{{ docker_data_folder }}/traefik/acme"
-      state: directory
-      owner: root
-      group: root
-      mode: 0755
+- name: Security header configuration
+  template:
+    src: security-headers.toml.j2
+    dest: "{{ docker_data_folder }}/traefik/config/security-headers.toml"
 
-  - copy:
-      src: traefik.toml
-      dest: "{{ docker_data_folder }}/traefik/traefik.toml"
-
-  - copy:
-      src: "traefik_config/"
-      dest: "{{ docker_data_folder }}/traefik/config"
-
-  - template:
-      src: basic_auth_middleware.toml.j2
-      dest: "{{ docker_data_folder }}/traefik/config/basic_auth_middleware.toml"
-
-  - template:
-      src: security-headers.toml.j2
-      dest: "{{ docker_data_folder }}/traefik/config/security-headers.toml"
-
-  - docker_network:
-      name: traefik-web
-      state: present
+- name: Make sure traefik network exists
+  docker_network:
+    name: traefik-web
+    state: present
 
 - name: Run traefik
   docker_compose:
