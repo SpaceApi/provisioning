@@ -1,8 +1,10 @@
 mattermost_db_password: "{{ vault_mattermost_db_password }}"
-mattermost_bridge_bot_password: "{{ vault_mattermost_bridge_bot_password }}"
 mattermost_gh_hook_secretkey: "{{ vault_mattermost_gh_hook_secretkey }}"
 mattermost_gh_hook_id_default: "{{ vault_mattermost_gh_hook_id_default }}"
 mattermost_alertmanager_token: "{{ vault_mattermost_alertmanager_token }}"
+
+matterbridge_mattermost_password: "{{ vault_matterbridge_mattermost_password }}"
+matterbridge_matrix_password: "{{ vault_matterbridge_matrix_password }}"
 
 influxdb_admin_user: "{{ vault_influxdb_admin_user }}"
 influxdb_admin_password: "{{ vault_influxdb_admin_password }}"

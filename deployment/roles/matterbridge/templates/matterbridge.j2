@@ -1,28 +1,12 @@
-[[gateway]]
-name="gateway1"
-enable=true
-
-[[gateway.inout]]
-account="irc.spaceapi"
-channel="#spaceapi"
-
-[[gateway.inout]]
-account="mattermost.spaceapi"
-channel="off-topic"
-
 [mattermost.spaceapi]
-#The mattermost hostname. (do not prefix it with http or https)
+# The mattermost hostname. (do not prefix it with http or https)
 Server="chat.{{ domain }}:443"
-
-#the team name as can be seen in the mattermost webinterface URL
-#in lowercase, without spaces
+# The team name as can be seen in the mattermost webinterface URL
+# in lowercase, without spaces.
 Team="spaceapi"
-
-#login/pass of your bot.
-#Use a dedicated user for this and not your own!
+# Login/password of your bot. Use a dedicated user for this and not your own!
 Login="bridge_bot"
-Password="{{ mattermost_bridge_bot_password }}"
-
+Password="{{ matterbridge_mattermost_password }}"
 RemoteNickFormat="[{PROTOCOL}/{NICK}] "
 PrefixMessagesWithNick=true
 EditDisable=false
@@ -34,3 +18,25 @@ UseTLS=true
 Nick="bridge_bot"
 RemoteNickFormat="[{PROTOCOL}/{NICK}] "
 
+[matrix.spaceapi]
+Server="https://matrix.coredump.ch"
+Login="spaceapi_bridge"
+Password="{{ matterbridge_matrix_password }}"
+RemoteNickFormat="[{PROTOCOL}/{NICK}] "
+NoHomeServerSuffix=true
+
+[[gateway]]
+name="gateway1"
+enable=true
+
+  [[gateway.inout]]
+  account="irc.spaceapi"
+  channel="#spaceapi"
+
+  [[gateway.inout]]
+  account="mattermost.spaceapi"
+  channel="off-topic"
+
+  [[gateway.inout]]
+  account="matrix.spaceapi"
+  channel="#spaceapi:matrix.coredump.ch"
