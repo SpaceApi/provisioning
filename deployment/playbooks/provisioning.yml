@@ -14,6 +14,7 @@
     - { role: mattermost, tags: ['mattermost'] }
     - { role: matterbridge, tags: ['matterbridge'] }
     - { role: website, tags: ['website'] }
+    - { role: schema, tags: ['schema'] }
     - { role: directory, tags: ['directory'] }
     - { role: validator, tags: ['validator'] }
     - { role: metrics, tags: ['metrics'] }
