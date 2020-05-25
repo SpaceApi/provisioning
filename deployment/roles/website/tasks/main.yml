@@ -15,4 +15,5 @@
       traefik.http.routers.website.tls.certresolver: "letsencrypt"
       traefik.http.routers.website.tls.options: "default"
       traefik.http.routers.website.middlewares: "security-headers@file"
+      traefik.http.services.website.loadbalancer.server.port: "8080"
       com.centurylinklabs.watchtower.enable: "true"
