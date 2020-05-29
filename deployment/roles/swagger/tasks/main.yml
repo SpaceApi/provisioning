@@ -1,0 +1,31 @@
+---
+- name: Run swagger
+  docker_container:
+    name: swagger
+    image: swaggerapi/swagger-ui
+    state: started
+    restart_policy: always
+    networks:
+      - name: traefik-web
+    purge_networks: yes
+    networks_cli_compatible: no
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.swagger.rule: "Host(`swagger.{{ domain }}`)"
+      traefik.http.routers.swagger.tls.certresolver: "letsencrypt"
+      traefik.http.routers.swagger.tls.options: "default"
+      traefik.http.routers.swagger.middlewares: "security-headers@file"
+      traefik.http.services.swagger.loadbalancer.server.port: "8080"
+      com.centurylinklabs.watchtower.enable: "true"
+    env:
+      URLS: |
+        [
+          {
+            url: "https://api.{{ domain }}/openapi.json",
+            name: "Directory / API"
+          },
+          {
+            url: "https://validator.{{ domain }}/openapi.json",
+            name: "Validator"
+          }
+        ]
