@@ -15,6 +15,7 @@
     - { role: matterbridge, tags: ['matterbridge'] }
     - { role: website, tags: ['website'] }
     - { role: directory, tags: ['directory'] }
+    - { role: swagger, tags: ['swagger'] }
     - { role: validator, tags: ['validator'] }
     - { role: metrics, tags: ['metrics'] }
     - { role: github_bot, tags: ['github_bot']}
