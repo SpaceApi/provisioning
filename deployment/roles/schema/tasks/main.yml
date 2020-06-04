@@ -1,0 +1,18 @@
+---
+- name: Run schema server
+  docker_container:
+    name: schema
+    image: spaceapi/schema:latest
+    state: started
+    restart_policy: always
+    networks:
+      - name: traefik-web
+    purge_networks: yes
+    networks_cli_compatible: no
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.website.rule: "Host(`schema.{{ domain }}`)"
+      traefik.http.routers.website.tls.certresolver: "letsencrypt"
+      traefik.http.routers.website.tls.options: "default"
+      traefik.http.routers.website.middlewares: "security-headers@file"
+      com.centurylinklabs.watchtower.enable: "true"

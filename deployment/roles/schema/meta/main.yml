@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: SpaceAPI project
+  description: Run the schema service
+  license: MIT
+  min_ansible_version: 2.9
+  platforms:
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags: []
+dependencies:
+  - docker
+  - reverseproxy
+  - watchtower
