@@ -11,8 +11,9 @@
     networks_cli_compatible: no
     labels:
       traefik.enable: "true"
-      traefik.http.routers.website.rule: "Host(`schema.{{ domain }}`)"
-      traefik.http.routers.website.tls.certresolver: "letsencrypt"
-      traefik.http.routers.website.tls.options: "default"
-      traefik.http.routers.website.middlewares: "security-headers@file"
+      traefik.http.routers.schema.rule: "Host(`schema.{{ domain }}`)"
+      traefik.http.routers.schema.tls.certresolver: "letsencrypt"
+      traefik.http.routers.schema.tls.options: "default"
+      traefik.http.routers.schema.middlewares: "security-headers@file"
+      traefik.http.services.schema.loadbalancer.server.port: "80"
       com.centurylinklabs.watchtower.enable: "true"
