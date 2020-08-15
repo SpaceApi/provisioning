@@ -27,7 +27,7 @@ function createAndProvisionEnv {
     local domain=$2
 
     cd nodes
-    terraform init
+    terraform init -upgrade
     terraform workspace select ${env}
     terraform apply -var-file=${env}.tfvars
 
@@ -38,7 +38,7 @@ function createAndProvisionEnv {
 
 function createPersistent {
     cd persistent
-    terraform init
+    terraform init -upgrade
     terraform apply
     cd ..
 }
