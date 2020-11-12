@@ -3,3 +3,4 @@
   template:
     src: "{{ motd_path }}"
     dest: /etc/motd
+    mode: "744"
