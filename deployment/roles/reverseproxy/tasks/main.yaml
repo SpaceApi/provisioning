@@ -35,21 +35,25 @@
   copy:
     src: traefik.toml
     dest: "{{ docker_data_folder }}/traefik/traefik.toml"
+    mode: 0744
 
 - name: Create additional config for traefik
   copy:
     src: "traefik_config/"
     dest: "{{ docker_data_folder }}/traefik/config"
+    mode: 0744
 
 - name: Basic auth configuration
   template:
     src: basic_auth_middleware.toml.j2
     dest: "{{ docker_data_folder }}/traefik/config/basic_auth_middleware.toml"
+    mode: 0744
 
 - name: Security header configuration
   template:
     src: security-headers.toml.j2
     dest: "{{ docker_data_folder }}/traefik/config/security-headers.toml"
+    mode: 0744
 
 - name: Make sure traefik network exists
   docker_network:
