@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  validator:
+    image: spaceapi/validator:latest
+    restart: unless-stopped
+    networks:
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.validator.rule=Host(`validator.${DOMAIN}`)"
+      - "traefik.http.routers.validator.tls.certresolver=letsencrypt"
+      - "com.centurylinklabs.watchtower.enable=true"
+  ui:
+    image: spaceapi/validator-ui:latest
+    restart: unless-stopped
+    networks:
+      - traefik-web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.validator-ui.rule=Host(`validator.${DOMAIN}`) && PathPrefix(`/ui`)"
+      - "traefik.http.routers.validator-ui.tls.certresolver=letsencrypt"
+      - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  traefik-web:
+    external: true
+  default:

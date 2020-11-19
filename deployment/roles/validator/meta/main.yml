@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: SpaceAPI project
-  description: Start all services regarding the SpaceAPI directory
+  description: Start all services regarding the SpaceAPI validator
   license: MIT
   min_ansible_version: 2.9
   platforms:

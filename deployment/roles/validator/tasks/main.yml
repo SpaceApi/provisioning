@@ -1,18 +1,32 @@
 ---
+- name: Create service folder
+  file:
+    path: "{{ docker_folder }}/validator"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Add docker-compose service configuration
+  template:
+    src: env.j2
+    dest: "{{ docker_folder }}/validator/.env"
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Add docker-compose file
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_folder }}/validator/docker-compose.yml"
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Run validator
-  docker_container:
-    name: validator
-    image: spaceapi/validator:master
-    state: started
-    recreate: yes
-    restart: yes
-    restart_policy: always
-    networks:
-      - name: traefik-web
-    purge_networks: yes
-    networks_cli_compatible: no
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.validator.rule: "Host(`validator.{{ domain }}`)"
-      traefik.http.routers.validator.tls.certresolver: "letsencrypt"
-      com.centurylinklabs.watchtower.enable: "true"
+  docker_compose:
+    project_src: /etc/docker/validator
+    recreate: always
+    build: yes
+    nocache: yes
+    state: present
