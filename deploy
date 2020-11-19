@@ -3,8 +3,10 @@ set -euo pipefail
 set -x
 
 cd "$(dirname "$0")"
-export TF_VAR_hetzner_token="$(gopass show spaceapi/hetzner_cloud_token)"
-export TF_VAR_njalla_token="$(gopass show spaceapi/njalla_token)"
+TF_VAR_hetzner_token="$(gopass show spaceapi/hetzner_cloud_token)"
+export TF_VAR_hetzner_token
+TF_VAR_njalla_token="$(gopass show spaceapi/njalla_token)"
+export TF_VAR_njalla_token
 
 function autoDeploy {
     createPersistent
