@@ -9,6 +9,14 @@
     - { role: motd, tags: ['motd'] }
     - { role: docker, tags: ['docker'] }
     - { role: watchtower, tags: ['watchtower'] }
+    - role: ssh_access
+      vars:
+        ssh_access_github_user:
+          - gidsi
+          - dbrgn
+          - rnestler
+          - s3lph
+      tags: access
 
     # services
     - { role: mattermost, tags: ['mattermost'] }

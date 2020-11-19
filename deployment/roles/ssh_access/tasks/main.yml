@@ -1,0 +1,8 @@
+---
+- name:
+  blockinfile:
+    block: "{{ lookup('url', 'https://github.com/' + item + '.keys', split_lines=False) }}"
+    path: /root/.ssh/authorized_keys
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - {{ item }}"
+  with_items: "{{ ssh_access_github_user }}"
+
