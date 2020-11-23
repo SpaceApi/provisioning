@@ -1,5 +1,5 @@
 ---
-- name:
+- name: Add ssh keys from github users
   blockinfile:
     block: "{{ lookup('url', 'https://github.com/' + item + '.keys', split_lines=False) }}"
     path: /root/.ssh/authorized_keys
