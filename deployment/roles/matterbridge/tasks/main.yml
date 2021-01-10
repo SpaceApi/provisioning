@@ -1,4 +1,3 @@
----
 - name: Create data directory
   file:
     path: "{{ docker_data_folder }}/mattermost/matterbridge"
@@ -14,6 +13,7 @@
     owner: root
     group: root
     mode: 0755
+  notify: Restart matterbridge container
 
 - name: Start matterbridge container
   docker_container:

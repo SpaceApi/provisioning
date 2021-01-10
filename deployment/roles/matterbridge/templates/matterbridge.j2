@@ -1,11 +1,7 @@
 [mattermost.spaceapi]
-# The mattermost hostname. (do not prefix it with http or https)
-Server="chat.{{ domain }}:443"
-# The team name as can be seen in the mattermost webinterface URL
-# in lowercase, without spaces.
-Team="spaceapi"
-# Login/password of your bot. Use a dedicated user for this and not your own!
-Login="bridge_bot"
+Server="chat.{{ domain }}:443" # The mattermost hostname (do not prefix it with http or https)
+Team="spaceapi" # The team name as can be seen in the mattermost webinterface URL in lowercase, without spaces
+Login="bridge_bot" # Login/password of your bot. Use a dedicated user for this and not your own!
 Password="{{ matterbridge_mattermost_password }}"
 RemoteNickFormat="[{PROTOCOL}/{NICK}] "
 PrefixMessagesWithNick=true
@@ -35,7 +31,7 @@ enable=true
 
   [[gateway.inout]]
   account="mattermost.spaceapi"
-  channel="off-topic"
+  channel="town-square"
 
   [[gateway.inout]]
   account="matrix.spaceapi"
