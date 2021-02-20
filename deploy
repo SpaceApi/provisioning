@@ -27,6 +27,7 @@ function autoDeploy {
 function createAndProvisionEnv {
     local env=$1
     local domain=$2
+    local community_domain=$3
 
     cd nodes
     terraform init -upgrade
@@ -34,7 +35,7 @@ function createAndProvisionEnv {
     terraform apply -var-file=${env}.tfvars
 
     cd ../deployment
-    env=${env} /usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass --extra-vars "domain=$domain"
+    env=${env} /usr/bin/env ansible-playbook -i inventory.sh playbooks/provisioning.yml --vault-password-file vaultpass --extra-vars "domain=$domain" --extra-vars "community_domain=$community_domain"
     cd ..
 }
 
@@ -46,11 +47,11 @@ function createPersistent {
 }
 
 function createAndProvisionProd {
-    createAndProvisionEnv prod spaceapi.io
+    createAndProvisionEnv prod spaceapi.io spaceapi.community
 }
 
 function createAndProvisionDev {
-    createAndProvisionEnv dev spaceapi.rocks
+    createAndProvisionEnv dev spaceapi.rocks community.spaceapi.rocks
 }
 
 function destroyDev {
