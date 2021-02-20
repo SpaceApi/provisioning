@@ -11,7 +11,7 @@
     networks_cli_compatible: no
     labels:
       traefik.enable: "true"
-      traefik.http.routers.swagger.rule: "Host(`swagger.{{ domain }}`)"
+      traefik.http.routers.swagger.rule: "Host(`swagger.{{ community_domain }}`)"
       traefik.http.routers.swagger.tls.certresolver: "letsencrypt"
       traefik.http.routers.swagger.tls.options: "default"
       traefik.http.routers.swagger.middlewares: "security-headers@file"

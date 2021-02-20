@@ -25,7 +25,7 @@ services:
       - traefik-web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.directory-api.rule=Host(`api.${DOMAIN}`)"
+      - "traefik.http.routers.directory-api.rule=Host(`api.${COMMUNITY_DOMAIN}`)"
       - "traefik.http.routers.directory-api.tls.certresolver=letsencrypt"
       - "com.centurylinklabs.watchtower.enable=true"
   collector:
@@ -33,10 +33,8 @@ services:
     restart: on-failure
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.directory-collector.rule=Host(`api.${DOMAIN}`) && PathPrefix(`/collector`)"
+      - "traefik.http.routers.directory-collector.rule=Host(`api.${DOMAIN}`)"
       - "traefik.http.routers.directory-collector.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.directory-collector.middlewares=collector-stripprefix"
-      - "traefik.http.middlewares.collector-stripprefix.stripprefix.prefixes=/collector"
       - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - default

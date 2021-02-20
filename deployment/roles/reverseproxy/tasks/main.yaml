@@ -58,7 +58,11 @@
 - name: Make sure traefik network exists
   docker_network:
     name: traefik-web
+    enable_ipv6: yes
     state: present
+    ipam_config:
+      - subnet: 10.20.0.0/16
+      - subnet: fd01::/80
 
 - name: Run traefik
   docker_compose:
