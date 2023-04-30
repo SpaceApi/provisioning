@@ -1,0 +1,27 @@
+---
+name: Destroy dev environment
+concurrency: dev
+on:
+  workflow_dispatch:
+
+env:
+  env: dev
+  TF_VAR_hetzner_token: ${{secrets.HETZNER_TOKEN}}
+  TF_VAR_njalla_token: ${{secrets.NJALLA_TOKEN}}
+
+jobs:
+  deploy:
+    name: Deploy dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform select workspace
+        working-directory: ./nodes
+        run: terraform workspace select dev
+      - name: Terraform Apply
+        working-directory: ./nodes
+        run: terraform destroy -auto-approve -var-file=dev.tfvars
+      - uses: stefanzweifel/git-auto-commit-action@v4

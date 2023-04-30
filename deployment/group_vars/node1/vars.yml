@@ -6,11 +6,6 @@ mattermost_alertmanager_token: "{{ vault_mattermost_alertmanager_token }}"
 matterbridge_mattermost_password: "{{ vault_matterbridge_mattermost_password }}"
 matterbridge_matrix_password: "{{ vault_matterbridge_matrix_password }}"
 
-influxdb_admin_user: "{{ vault_influxdb_admin_user }}"
-influxdb_admin_password: "{{ vault_influxdb_admin_password }}"
-influxdb_user: "{{ vault_influxdb_user }}"
-influxdb_user_password: "{{ vault_influxdb_user_password }}"
-
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
 grafana_github_client_secret: "{{ vault_grafana_github_client_secret }}"
 
