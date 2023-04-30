@@ -10,7 +10,7 @@ resource "hcloud_ssh_key" "gidsi_betelgeuse" {
 
 resource "hcloud_ssh_key" "ghaction" {
   name = "ghaction"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAPOxypqisSTt8wxmMvYgkwpG+LCP7ufy9K0qpevUzjk ghaction@spaceapi.io"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAFD/EKdcMm2j1WkeIRlAO74wpLoK+ZKbIFFlgMBZZBd ghaction@spaceapi.io"
 }
 
 output "ssh_key_id1" {
