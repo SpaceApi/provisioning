@@ -23,12 +23,12 @@ provider "hcloud" {
 }
 
 provider "njalla" {
-  token = var.njalla_token
+  api_token = var.njalla_token
 }
 
 resource "hcloud_server" "node1" {
   name = "node1.${var.domain}"
-  image = "debian-10"
+  image = "debian-11"
   server_type = "cx11"
   location = "nbg1"
   ssh_keys = var.ssh_key_ids
@@ -39,18 +39,17 @@ resource "hcloud_volume_attachment" "main" {
   server_id = hcloud_server.node1.id
 }
 
-resource "njalla_domain_record" "node1_v4" {
+resource njalla_record_a node1_v4 {
   domain = var.domain
   name = "node1"
   content = hcloud_server.node1.ipv4_address
   ttl = 60
 }
 
-resource "njalla_domain_record" "node1_v6" {
+resource njalla_record_aaaa node1_v6 {
   domain = var.domain
   name = "node1"
   content = hcloud_server.node1.ipv6_address
-  type = "AAAA"
   ttl = 60
 }
 
@@ -64,4 +63,15 @@ resource "hcloud_rdns" "node1_v6" {
   server_id = hcloud_server.node1.id
   ip_address = hcloud_server.node1.ipv6_address
   dns_ptr = "node1.${var.domain}"
+}
+
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.module}/templates/hosts.tpl",
+    {
+      node1_ipv4 = hcloud_server.node1.ipv4_address
+      node1_ipv6 = hcloud_server.node1.ipv6_address
+      domain = var.domain
+    }
+  )
+  filename = "../deployment/inventory_dev.yaml"
 }

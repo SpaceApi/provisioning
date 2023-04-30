@@ -1,0 +1,47 @@
+---
+name: Deploy dev environment
+concurrency: dev
+on:
+  workflow_dispatch:
+
+env:
+  env: dev
+  TF_VAR_hetzner_token: ${{secrets.HETZNER_TOKEN}}
+  TF_VAR_njalla_token: ${{secrets.NJALLA_TOKEN}}
+
+jobs:
+  deploy:
+    name: Deploy dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform Init
+        working-directory: ./nodes
+        run: terraform init -upgrade=true
+      - name: Terraform select workspace
+        working-directory: ./nodes
+        run: terraform workspace select dev
+      - name: Terraform Apply
+        working-directory: ./nodes
+        run: terraform apply -auto-approve -var-file=dev.tfvars
+      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install ansible
+        run: pip install -r requirements.txt
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: playbooks/provisioning.yml
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          directory: ./deployment
+          vault_password: ${{secrets.VAULT_PASSWORD}}
+          options: |
+            --inventory inventory_dev.yaml
+            --extra-vars "domain=spaceapi.rocks"
+            --extra-vars "community_domain=community.spaceapi.rocks"

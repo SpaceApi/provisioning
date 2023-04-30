@@ -10,7 +10,3 @@
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     command: "--interval {{ watchtower_interval }} --cleanup --label-enable"
-    env:
-      WATCHTOWER_NOTIFICATIONS: slack
-      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: "https://chat.{{ domain }}/hooks/{{ vault_watchtower_mattermost_token }}"
-      WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: watchtower-katharina

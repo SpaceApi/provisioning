@@ -1,0 +1,6 @@
+all:
+  children:
+    node1:
+      hosts:
+        node1.spaceapi.rocks:
+          ansible_host: "94.130.171.41"

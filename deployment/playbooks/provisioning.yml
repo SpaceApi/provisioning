@@ -1,6 +1,5 @@
 ---
 - hosts: node1
-  # become: yes
   user: root
   roles:
     # server setup
@@ -19,12 +18,9 @@
       tags: access
 
     # services
-    - { role: mattermost, tags: ['mattermost'] }
-    - { role: matterbridge, tags: ['matterbridge'] }
     - { role: website, tags: ['website'] }
     - { role: schema, tags: ['schema'] }
     - { role: directory, tags: ['directory'] }
     - { role: swagger, tags: ['swagger'] }
     - { role: validator, tags: ['validator'] }
     - { role: metrics, tags: ['metrics'] }
-    - { role: github_bot, tags: ['github_bot']}

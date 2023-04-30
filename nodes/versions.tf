@@ -4,8 +4,8 @@ terraform {
       source = "hetznercloud/hcloud"
     }
     njalla = {
-      source = "gidsi/njalla"
-      version = "1.0.0"
+      source  = "Sighery/njalla"
+      version = "~> 0.10.0"
     }
   }
   required_version = ">= 0.13"

@@ -22,6 +22,7 @@
       - apt-listchanges
       - gnupg
       - python-setuptools
+      - python3-pip
     update_cache: yes
     cache_valid_time: 3600
 
