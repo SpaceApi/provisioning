@@ -1,4 +1,2 @@
 ---
 use_default_rules: true
-warn_list:
-  - load-failure
