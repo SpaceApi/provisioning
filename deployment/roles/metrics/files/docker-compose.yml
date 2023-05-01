@@ -89,7 +89,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
   cadvisor:
-    image: google/cadvisor
+    image: gcr.io/cadvisor/cadvisor
     networks:
       - default
       - traefik-web
