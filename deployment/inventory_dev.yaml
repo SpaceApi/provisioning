@@ -2,5 +2,5 @@ all:
   children:
     node1:
       hosts:
-        node1.spaceapi.rocks:
-          ansible_host: "94.130.171.41"
+        node1.spaceapi.io:
+          ansible_host: "116.203.215.224"
