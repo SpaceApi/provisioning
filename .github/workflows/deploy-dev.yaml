@@ -48,7 +48,7 @@ jobs:
             --extra-vars "domain=${{env.domain}}"
             --extra-vars "community_domain=${{env.community_domain}}"
   test:
-    depends-on: deploy
+    needs: deploy
     name: Test urls
     runs-on: ubuntu-latest
     steps:
