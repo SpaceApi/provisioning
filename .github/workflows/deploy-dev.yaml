@@ -16,10 +16,6 @@ jobs:
     name: Deploy dev
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          dig spaceapi.rocks
-          dig validator.spaceapi.rocks
-          curl --fail -sv --retry 3 --retry-delay 5 --retry-connrefused -L https://validator.spaceapi.rocks/openapi.json
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup terraform
