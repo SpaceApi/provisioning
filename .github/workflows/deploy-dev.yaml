@@ -8,6 +8,8 @@ env:
   env: dev
   TF_VAR_hetzner_token: ${{secrets.HETZNER_TOKEN}}
   TF_VAR_njalla_token: ${{secrets.NJALLA_TOKEN}}
+  domain: spaceapi.rocks
+  community_domain: community.spaceapi.rocks
 
 jobs:
   deploy:
@@ -43,5 +45,12 @@ jobs:
           vault_password: ${{secrets.VAULT_PASSWORD}}
           options: |
             --inventory inventory_dev.yaml
-            --extra-vars "domain=spaceapi.rocks"
-            --extra-vars "community_domain=community.spaceapi.rocks"
+            --extra-vars "domain=${{env.domain}}"
+            --extra-vars "community_domain=${{env.community_domain}}"
+      - name: Check the URLs
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: https://${{env.domain}}|https://directory.${{env.domain}}|https://validator.${{env.domain}}/v2/
+          follow-redirect: true
+          max-attempts: 3
+          retry-delay: 5s
