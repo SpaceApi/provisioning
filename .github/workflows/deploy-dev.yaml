@@ -50,7 +50,7 @@ jobs:
       - name: Check the URLs
         uses: jtalk/url-health-check-action@v3
         with:
-          url: https://${{env.domain}}|https://directory.${{env.domain}}|https://validator.${{env.domain}}/v2/
+          url: https://${{env.domain}}|https://directory.${{env.domain}}|https://validator.${{env.domain}}/openapi.json
           follow-redirect: true
           max-attempts: 3
           retry-delay: 5s
