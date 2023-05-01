@@ -23,7 +23,7 @@ jobs:
         run: terraform init -upgrade=true
       - name: Terraform select workspace
         working-directory: ./nodes
-        run: terraform workspace select dev -or-create
+        run: terraform workspace select dev || terraform workspace new dev
       - name: Terraform Apply
         working-directory: ./nodes
         run: terraform apply -auto-approve -var-file=dev.tfvars
