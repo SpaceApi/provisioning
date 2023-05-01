@@ -1,0 +1,25 @@
+---
+name: Syntax check
+on:
+  push:
+
+jobs:
+  syntax-check:
+    name: Syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install ansible
+        run: pip install -r requirements.txt
+      - name: Run ansible-lint
+        working-directory: ./deployment
+        run: ansible-lint
+      - name: Run ansible syntax-check
+        working-directory: ./deployment
+        run: ansible-playbook --syntax-check -i inventory.sh  playbooks/*.yml
+      - uses: stefanzweifel/git-auto-commit-action@v4
