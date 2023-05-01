@@ -19,6 +19,7 @@
       tags: access
 
     # services
+    - { role: matterbridge, tags: ['matterbridge'] }
     - { role: website, tags: ['website'] }
     - { role: schema, tags: ['schema'] }
     - { role: directory, tags: ['directory'] }
