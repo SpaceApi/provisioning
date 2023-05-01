@@ -1,5 +1,6 @@
 ---
 - hosts: node1
+  name: Provisioning node1
   user: root
   roles:
     # server setup

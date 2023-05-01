@@ -1,22 +1,22 @@
 - name: Create data directory
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/mattermost/matterbridge"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Copy configuration
-  template:
+  ansible.builtin.template:
     src: matterbridge.j2
     dest: "{{ docker_data_folder }}/mattermost/matterbridge/matterbridge.toml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
   notify: Restart matterbridge container
 
 - name: Start matterbridge container
-  docker_container:
+  community.docker.docker_container:
     name: matterbridge
     image: 42wim/matterbridge:1.12.1
     state: started

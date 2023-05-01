@@ -1,6 +1,6 @@
 ---
 - name: Mount up persistent storage
-  mount:
+  ansible.posix.mount:
     path: /srv
     src: /dev/sdb
     fstype: ext4

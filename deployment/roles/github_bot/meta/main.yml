@@ -3,13 +3,13 @@ galaxy_info:
   author: SpaceAPI project
   description: Start all services regarding the SpaceAPI directory
   license: MIT
-  min_ansible_version: 2.9
+  min_ansible_version: "2.9"
   platforms:
     - name: Debian
       versions:
         - all
   galaxy_tags: []
 dependencies:
-  - docker
-  - reverseproxy
-  - watchtower
+  - { role: docker }
+  - { role: reverseproxy }
+  - { role: watchtower }

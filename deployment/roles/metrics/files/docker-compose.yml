@@ -27,14 +27,14 @@ services:
       - traefik-web
     restart: always
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN}`)"
-    - "traefik.http.routers.prometheus.tls.certresolver=letsencrypt"
-    - "traefik.http.routers.prometheus.middlewares=secure-intern@file"
-    - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN}`)"
+      - "traefik.http.routers.prometheus.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.prometheus.middlewares=secure-intern@file"
+      - "com.centurylinklabs.watchtower.enable=true"
     volumes:
-    - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
-    - "${DATA_FOLDER}/alert.rules:/alert.rules:ro"
+      - "${DATA_FOLDER}/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+      - "${DATA_FOLDER}/alert.rules:/alert.rules:ro"
 
   alertmanager:
     image: prom/alertmanager
@@ -81,12 +81,12 @@ services:
       GF_AUTH_GITHUB_ALLOW_SIGN_UP: "true"
       GF_AUTH_GITHUB_ALLOWED_ORGANIZATIONS: "spaceapi spaceapi-community"
     volumes:
-    - "${DATA_FOLDER}/grafana:/var/lib/grafana"
+      - "${DATA_FOLDER}/grafana:/var/lib/grafana"
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.metrics.rule=Host(`metrics.${DOMAIN}`)"
-    - "traefik.http.routers.metrics.tls.certresolver=letsencrypt"
-    - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.metrics.rule=Host(`metrics.${DOMAIN}`)"
+      - "traefik.http.routers.metrics.tls.certresolver=letsencrypt"
+      - "com.centurylinklabs.watchtower.enable=true"
 
   cadvisor:
     image: google/cadvisor

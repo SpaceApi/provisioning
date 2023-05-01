@@ -1,14 +1,14 @@
 ---
 - name: Run website
-  docker_container:
+  community.docker.docker_container:
     name: website
     image: spaceapi/website:v3
     state: started
     restart_policy: always
     networks:
       - name: traefik-web
-    purge_networks: yes
-    networks_cli_compatible: no
+    purge_networks: true
+    networks_cli_compatible: false
     labels:
       traefik.enable: "true"
       traefik.http.routers.website.rule: "Host(`{{ domain }}`) || Host(`www.{{ domain }}`)"

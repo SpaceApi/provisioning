@@ -1,80 +1,80 @@
 ---
 - name: Create service data folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/metrics"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create grafana data folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/metrics/grafana"
     state: directory
     owner: "472"
     group: "472"
-    mode: 0755
+    mode: "0755"
 
 - name: Create prometheus data folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/metrics/prometheus"
     state: directory
     owner: nobody
     group: nogroup
-    mode: 0755
+    mode: "0755"
 
 - name: Create service folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_folder }}/metrics"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add service configuration
-  template:
+  ansible.builtin.template:
     src: env.j2
     dest: "{{ docker_folder }}/metrics/.env"
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
 
 - name: Add docker-compose file
-  copy:
+  ansible.builtin.copy:
     src: docker-compose.yml
     dest: "{{ docker_folder }}/metrics/docker-compose.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add prometheus configuration
-  template:
+  ansible.builtin.template:
     src: prometheus.yml.j2
     dest: "{{ docker_data_folder }}/metrics/prometheus.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add prometheus alert manager rules
-  copy:
+  ansible.builtin.copy:
     src: alert.rules
     dest: "{{ docker_data_folder }}/metrics/alert.rules"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add prometheus alert manager configuration
-  template:
+  ansible.builtin.template:
     src: alertmanager.yml.j2
     dest: "{{ docker_data_folder }}/metrics/alertmanager.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Run metrics directory
-  docker_compose:
+  community.docker.docker_compose:
     project_src: "{{ docker_folder }}/metrics"
     recreate: always
-    build: yes
-    nocache: yes
+    build: true
+    nocache: true
     state: present

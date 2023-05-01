@@ -1,10 +1,11 @@
+---
 - name: Update apt cache.
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
     cache_valid_time: 3600
 
 - name: Install required system packages.
-  apt:
+  ansible.builtin.apt:
     pkg:
       # Base
       - build-essential
@@ -23,21 +24,21 @@
       - gnupg
       - python-setuptools
       - python3-pip
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
 
 - name: Unattended upgrades - copy config file
-  template:
+  ansible.builtin.template:
     src: unattended_upgrades.j2
     dest: /etc/apt/apt.conf.d/50unattended-upgrades
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Apt - periodic updates.
-  copy:
+  ansible.builtin.copy:
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"

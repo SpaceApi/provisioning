@@ -1,48 +1,48 @@
 ---
 - name: Create data directory
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/spaceapi_directory"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add nginx config
-  copy:
+  ansible.builtin.copy:
     src: nginx.conf
     dest: "{{ docker_data_folder }}/spaceapi_directory/nginx.conf"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create service folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_folder }}/spaceapi_directory"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add docker-compose service configuration
-  template:
+  ansible.builtin.template:
     src: env.j2
     dest: "{{ docker_folder }}/spaceapi_directory/.env"
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
 
 - name: Add docker-compose file
-  copy:
+  ansible.builtin.copy:
     src: docker-compose.yml
     dest: "{{ docker_folder }}/spaceapi_directory/docker-compose.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Run spaceapi directory
-  docker_compose:
+  community.docker.docker_compose:
     project_src: /etc/docker/spaceapi_directory
     recreate: always
-    build: yes
-    nocache: yes
+    build: true
+    nocache: true
     state: present

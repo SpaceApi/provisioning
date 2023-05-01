@@ -1,14 +1,14 @@
 ---
 - name: Run schema server
-  docker_container:
+  community.docker.docker_container:
     name: schema
     image: spaceapi/schema:latest
     state: started
     restart_policy: always
     networks:
       - name: traefik-web
-    purge_networks: yes
-    networks_cli_compatible: no
+    purge_networks: true
+    networks_cli_compatible: false
     labels:
       traefik.enable: "true"
       traefik.http.routers.schema.rule: "Host(`schema.{{ domain }}`)"

@@ -1,6 +1,6 @@
 ---
-become_method: sudo
-ansible_ask_become_pass: yes
+ansible_become_method: sudo
+ansible_ask_become_pass: true
 docker_data_folder: /srv/docker
 docker_folder: /etc/docker
 motd_path: files/motd.txt
@@ -15,4 +15,3 @@ github_bot_app_id: "{{ vault_github_bot_app_id }}"
 github_bot_private_key: "{{ vault_github_bot_private_key }}"
 github_bot_webhook_secret: "{{ vault_github_bot_webhook_secret }}"
 github_bot_mongo_db_password: "{{ vault_github_bot_mongo_db_password }}"
-

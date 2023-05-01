@@ -1,5 +1,5 @@
 - name: Restart matterbridge container
-  docker_container:
+  community.docker.docker_container:
     name: matterbridge
     state: started
-    restart: yes
+    restart: true

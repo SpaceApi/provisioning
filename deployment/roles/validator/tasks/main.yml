@@ -1,32 +1,32 @@
 ---
 - name: Create service folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_folder }}/validator"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add docker-compose service configuration
-  template:
+  ansible.builtin.template:
     src: env.j2
     dest: "{{ docker_folder }}/validator/.env"
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
 
 - name: Add docker-compose file
-  copy:
+  ansible.builtin.copy:
     src: docker-compose.yml
     dest: "{{ docker_folder }}/validator/docker-compose.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Run validator
-  docker_compose:
+  community.docker.docker_compose:
     project_src: /etc/docker/validator
     recreate: always
-    build: yes
-    nocache: yes
+    build: true
+    nocache: true
     state: present

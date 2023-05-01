@@ -5,7 +5,7 @@ services:
     image: traefik:2.3
     restart: always
     networks:
-     - traefik-web
+      - traefik-web
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"

@@ -1,37 +1,37 @@
 ---
 - name: Create service data directory
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/mattermost"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create service directory
-  file:
+  ansible.builtin.file:
     path: "{{ docker_folder }}/mattermost"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add service configuration
-  template:
+  ansible.builtin.template:
     src: env.j2
     dest: "{{ docker_folder }}/mattermost/.env"
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
 
 - name: Add docker-compose file
-  copy:
+  ansible.builtin.copy:
     src: docker-compose.yml
     dest: "{{ docker_folder }}/mattermost/docker-compose.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Run mattermost + integrations
-  docker_compose:
+  community.docker.docker_compose:
     project_src: "{{ docker_folder }}/mattermost"
     state: present

@@ -1,6 +1,6 @@
 ---
 - name: Run watchtower
-  docker_container:
+  community.docker.docker_container:
     name: watchtower
     image: containrrr/watchtower:1.1.4
     state: started

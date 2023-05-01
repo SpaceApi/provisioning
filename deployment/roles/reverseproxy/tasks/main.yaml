@@ -1,71 +1,71 @@
 ---
 - name: Create service folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_folder }}/traefik"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Add service configuration
-  template:
+  ansible.builtin.template:
     src: env.j2
     dest: "{{ docker_folder }}/traefik/.env"
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
 
 - name: Add docker-compose file
-  copy:
+  ansible.builtin.copy:
     src: docker-compose.yml
     dest: "{{ docker_folder }}/traefik/docker-compose.yml"
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create certificate folder
-  file:
+  ansible.builtin.file:
     path: "{{ docker_data_folder }}/traefik/acme"
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Configure traefik
-  copy:
+  ansible.builtin.copy:
     src: traefik.toml
     dest: "{{ docker_data_folder }}/traefik/traefik.toml"
-    mode: 0744
+    mode: "0744"
 
 - name: Create additional config for traefik
-  copy:
+  ansible.builtin.copy:
     src: "traefik_config/"
     dest: "{{ docker_data_folder }}/traefik/config"
-    mode: 0744
+    mode: "0744"
 
 - name: Basic auth configuration
-  template:
+  ansible.builtin.template:
     src: basic_auth_middleware.toml.j2
     dest: "{{ docker_data_folder }}/traefik/config/basic_auth_middleware.toml"
-    mode: 0744
+    mode: "0744"
 
 - name: Security header configuration
-  template:
+  ansible.builtin.template:
     src: security-headers.toml.j2
     dest: "{{ docker_data_folder }}/traefik/config/security-headers.toml"
-    mode: 0744
+    mode: "0744"
 
 - name: Make sure traefik network exists
-  docker_network:
+  community.docker.docker_network:
     name: traefik-web
-    enable_ipv6: yes
+    enable_ipv6: true
     state: present
     ipam_config:
       - subnet: 10.20.0.0/16
       - subnet: fd01::/80
 
 - name: Run traefik
-  docker_compose:
+  community.docker.docker_compose:
     project_src: "{{ docker_folder }}/traefik"
-    nocache: yes
+    nocache: true
     state: present
