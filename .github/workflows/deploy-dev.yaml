@@ -13,7 +13,7 @@ env:
 
 jobs:
   deploy:
-    name: Deploy ${{env.env}}
+    name: Deploy environment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
