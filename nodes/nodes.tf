@@ -18,6 +18,10 @@ variable "domain" {
   type = string
 }
 
+variable "env" {
+  type = string
+}
+
 provider "hcloud" {
   token = var.hetzner_token
 }
@@ -73,5 +77,5 @@ resource "local_file" "hosts_cfg" {
       domain = var.domain
     }
   )
-  filename = "../deployment/inventory_dev.yaml"
+  filename = "../deployment/inventory_${var.env}.yaml"
 }
