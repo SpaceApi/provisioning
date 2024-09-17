@@ -28,6 +28,7 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
+      - python3-docker
     update_cache: true
     cache_valid_time: 3600
 
