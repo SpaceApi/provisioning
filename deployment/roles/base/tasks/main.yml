@@ -22,7 +22,7 @@
       - unattended-upgrades
       - apt-listchanges
       - gnupg
-      - python-setuptools
+      - python3-setuptools
       - python3-pip
     update_cache: true
     cache_valid_time: 3600
