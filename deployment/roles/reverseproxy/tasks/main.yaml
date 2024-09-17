@@ -65,7 +65,7 @@
       - subnet: fd01::/80
 
 - name: Run traefik
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ docker_folder }}/traefik"
     nocache: true
     state: present
