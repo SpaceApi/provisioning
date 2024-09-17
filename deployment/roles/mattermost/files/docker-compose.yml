@@ -2,7 +2,7 @@ version: "2"
 
 services:
   db:
-    image: mattermost/mattermost-prod-db:5.29.0
+    image: mattermost/mattermost-prod-db:v5.33.3
     restart: always
     volumes:
       - ${DATA_FOLDER}/db/var/lib/postgresql/data:/var/lib/postgresql/data
