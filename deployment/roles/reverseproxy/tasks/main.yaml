@@ -67,5 +67,5 @@
 - name: Run traefik
   community.docker.docker_compose_v2:
     project_src: "{{ docker_folder }}/traefik"
-    nocache: true
+    pull: always
     state: present
