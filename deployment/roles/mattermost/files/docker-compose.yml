@@ -17,7 +17,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=mattermost
   app:
-    image: mattermost/mattermost-prod-app:5.29.0
+    image: mattermost/mattermost-prod-app:v5.33.3
     restart: always
     labels:
       - "traefik.enable=false"
