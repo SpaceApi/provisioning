@@ -72,9 +72,9 @@
     mode: "0755"
 
 - name: Run metrics directory
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ docker_folder }}/metrics"
     recreate: always
     build: true
-    nocache: true
+    pull: always
     state: present

@@ -24,9 +24,9 @@
     mode: "0755"
 
 - name: Run validator
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: /etc/docker/validator
     recreate: always
     build: true
-    nocache: true
+    pull: always
     state: present

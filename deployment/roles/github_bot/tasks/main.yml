@@ -24,6 +24,6 @@
     mode: "0700"
 
 - name: Run github_bot
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ docker_folder }}/github_bot"
     state: present

@@ -32,6 +32,6 @@
     mode: "0755"
 
 - name: Run mattermost + integrations
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ docker_folder }}/mattermost"
     state: present

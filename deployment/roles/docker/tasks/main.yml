@@ -32,13 +32,6 @@
     update_cache: true
     cache_valid_time: 3600
 
-#- name: Install docker-compose.
-#  ansible.builtin.pip:
-#    name:
-#      - docker~=3.7.2
-#      - docker-compose~=1.24.0
-#    state: present
-
 - name: Enable Docker.
   ansible.builtin.service:
     name: docker

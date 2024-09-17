@@ -40,9 +40,9 @@
     mode: "0755"
 
 - name: Run spaceapi directory
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: /etc/docker/spaceapi_directory
     recreate: always
     build: true
-    nocache: true
+    pull: always
     state: present
