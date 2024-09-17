@@ -75,6 +75,6 @@
   community.docker.docker_compose_v2:
     project_src: "{{ docker_folder }}/metrics"
     recreate: always
-    build: true
+    build: always
     pull: always
     state: present

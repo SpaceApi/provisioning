@@ -27,6 +27,6 @@
   community.docker.docker_compose_v2:
     project_src: /etc/docker/validator
     recreate: always
-    build: true
+    build: always
     pull: always
     state: present
