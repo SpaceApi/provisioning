@@ -38,7 +38,7 @@ services:
     depends_on:
       - db
   web:
-    image: mattermost/mattermost-prod-web:5.29.0
+    image: mattermost/mattermost-prod-web:v5.33.3
     expose:
       - "80"
     restart: always
