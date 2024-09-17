@@ -43,6 +43,6 @@
   community.docker.docker_compose_v2:
     project_src: /etc/docker/spaceapi_directory
     recreate: always
-    build: true
+    build: always
     pull: always
     state: present
