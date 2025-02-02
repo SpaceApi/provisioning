@@ -2,7 +2,7 @@ version: '3'
 
 services:
   validator:
-    image: spaceapi/validator:latest
+    image: ghcr.io/spaceapi/validator:latest
     restart: unless-stopped
     networks:
       - traefik-web
