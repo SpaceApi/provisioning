@@ -12,7 +12,7 @@ services:
       - "traefik.http.routers.validator.tls.certresolver=letsencrypt"
       - "com.centurylinklabs.watchtower.enable=true"
   ui:
-    image: spaceapi/validator-ui:latest
+    image: ghcr.io/spaceapi/validator-web:latest
     restart: unless-stopped
     networks:
       - traefik-web
