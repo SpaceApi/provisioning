@@ -7,8 +7,8 @@
     restart_policy: always
     networks:
       - name: traefik-web
-    purge_networks: true
-    networks_cli_compatible: false
+    comparisons:
+      networks: strict
     labels:
       traefik.enable: "true"
       traefik.http.routers.schema.rule: "Host(`schema.{{ domain }}`)"
