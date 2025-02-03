@@ -2,7 +2,7 @@
 - name: Run website
   community.docker.docker_container:
     name: website
-    image: spaceapi/website:v3
+    image: ghcr.io/spaceapi/website:v3
     state: started
     restart_policy: always
     networks:
