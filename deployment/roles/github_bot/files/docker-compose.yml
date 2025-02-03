@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   bot:
-    image: spaceapi/github-bot
+    image: ghcr.io/spaceapi/github-bot
     restart: always
     environment:
       WEBHOOK_PROXY_URL: ${WEBHOOK_PROXY_URL}
