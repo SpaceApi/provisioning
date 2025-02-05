@@ -2,7 +2,7 @@
 - name: Run schema server
   community.docker.docker_container:
     name: schema
-    image: spaceapi/schema:latest
+    image: ghcr.io/spaceapi/schema:latest
     state: started
     restart_policy: always
     networks:
