@@ -37,7 +37,7 @@ jobs:
       - name: Install ansible
         run: pip install -r requirements.txt
       - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
+        uses: dawidd6/action-ansible-playbook@v5
         with:
           playbook: playbooks/provisioning.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
