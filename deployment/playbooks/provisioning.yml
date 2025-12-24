@@ -19,7 +19,7 @@
       tags: access
 
     # services
-    - { role: matterbridge, tags: ['matterbridge'] }
+    #- { role: matterbridge, tags: ['matterbridge'] } # Disabled in December 2025 due to IRC spam
     - { role: website, tags: ['website'] }
     - { role: schema, tags: ['schema'] }
     - { role: directory, tags: ['directory'] }
