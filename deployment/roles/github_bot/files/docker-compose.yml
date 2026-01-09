@@ -23,7 +23,7 @@ services:
       - default
       - traefik-web
   database:
-    image: mongo:4
+    image: mongo:8
     restart: always
     volumes:
       - "${DATA_FOLDER}/db:/data/db"
