@@ -15,7 +15,7 @@
       - htop
       - strace
       - vim-nox
-      - mlocate
+      - tmux
       - curl
       - molly-guard
       # Security

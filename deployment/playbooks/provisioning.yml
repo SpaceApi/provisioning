@@ -9,6 +9,7 @@
     - { role: motd, tags: ['motd'] }
     - { role: docker, tags: ['docker'] }
     - { role: watchtower, tags: ['watchtower'] }
+    - { role: reverseproxy, tags: ['reverseproxy'] }
     - role: ssh_access
       vars:
         ssh_access_github_user:
@@ -19,7 +20,6 @@
       tags: access
 
     # services
-    #- { role: matterbridge, tags: ['matterbridge'] } # Disabled in December 2025 due to IRC spam
     - { role: website, tags: ['website'] }
     - { role: schema, tags: ['schema'] }
     - { role: directory, tags: ['directory'] }

@@ -5,6 +5,7 @@ docker_data_folder: /srv/docker
 docker_folder: /etc/docker
 motd_path: files/motd.txt
 domain: spaceapi.io
+community_domain: spaceapi.io
 
 default_basic_auth: "{{ vault_default_basic_auth }}"
 default_basic_auth_user: "{{ vault_default_basic_auth_user }}"

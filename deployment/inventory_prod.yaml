@@ -3,4 +3,3 @@ all:
     node1:
       hosts:
         node1.spaceapi.io:
-          ansible_host: "116.203.215.224"

@@ -1,33 +1,16 @@
 ---
-- name: Add Docker repository key.
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/debian/gpg
-    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-
-- name: Install apt HTTPS transport and python-pip
-  ansible.builtin.apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
-      - python3-pip
-    update-cache: true
-    cache_valid_time: 3600
-
-- name: Add Docker repository.
-  ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
 
 - name: Install Docker.
   ansible.builtin.apt:
     name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-compose-plugin
+      - ca-certificates
+      - curl
+      - gnupg2
+      - python3-pip
+      - docker.io
+      - docker-cli
+      - docker-buildx
+      - docker-compose
       - python3-docker
     update_cache: true
     cache_valid_time: 3600
@@ -38,12 +21,13 @@
     state: started
     enabled: true
 
-- name: Don't change iptables with Docker.
-  ansible.builtin.lineinfile:
-    dest: /etc/default/docker
-    regexp: "^DOCKER_OPTS"
-    line: 'DOCKER_OPTS="--iptables=false"'
-    state: present
+- name: Create /etc/docker/daemon.json.
+  ansible.builtin.template:
+    src: etc/docker/daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: "0644"
   notify: Restart docker
 
 - name: Create docker directory.
