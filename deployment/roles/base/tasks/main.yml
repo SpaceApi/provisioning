@@ -17,6 +17,7 @@
       - vim-nox
       - tmux
       - curl
+      - jq
       - molly-guard
       # Security
       - unattended-upgrades
