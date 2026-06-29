@@ -32,8 +32,8 @@ provider "njalla" {
 
 resource "hcloud_server" "node1" {
   name = "node1.${var.domain}"
-  image = "debian-12"
-  server_type = "cx22"
+  image = "debian-13"
+  server_type = "cx23"
   location = "nbg1"
   ssh_keys = var.ssh_key_ids
 }
