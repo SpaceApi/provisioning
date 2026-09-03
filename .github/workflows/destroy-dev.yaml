@@ -27,4 +27,4 @@ jobs:
       - name: Terraform Apply
         working-directory: ./nodes
         run: terraform destroy -auto-approve -var-file=dev.tfvars
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v7
